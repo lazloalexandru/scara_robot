@@ -1,0 +1,101 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+AUX_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	32;"	d	line:32	file:
+CONTROL_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	23;"	d	line:23	file:
+CONTROL_MANUAL	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	87;"	d	line:87	file:
+CONTROL_TRACKING	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	88;"	d	line:88	file:
+CONTROL_TYPE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	40;"	d	line:40	file:
+CalcPathParams	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	738;"	f	line:738	signature:(char idx)
+DIN1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	35;"	d	line:35	file:
+DIN2	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	36;"	d	line:36	file:
+DIN3_TW	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	37;"	d	line:37	file:
+HOME_SEARCH	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	89;"	d	line:89	file:
+HardwareInit	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	630;"	f	line:630
+ISR	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	508;"	f	line:508
+ISR_low	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	139;"	f	line:139	signature:(void)
+MANUAL_DATA	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	84;"	d	line:84	file:
+MANUAL_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	102;"	d	line:102	file:
+MAX_USART_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	105;"	d	line:105	file:
+MONITORED_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	109;"	d	line:109	file:
+MOTOR_BRAKE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	39;"	d	line:39	file:
+NONE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	46;"	d	line:46	file:
+NO_CONTROL	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	86;"	d	line:86	file:
+NUM_SLAVES	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	13;"	d	line:13	file:
+PATH_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	15;"	d	line:15	file:
+PWM_HOME1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	127;"	d	line:127	file:
+PWM_HOME2	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	128;"	d	line:128	file:
+PWM_HOME3	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	129;"	d	line:129	file:
+PWM_HOME4	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	130;"	d	line:130	file:
+STAGE1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	64;"	d	line:64	file:
+STAGE2	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	65;"	d	line:65	file:
+STAGE3	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	66;"	d	line:66	file:
+START_CONTROL	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	90;"	d	line:90	file:
+STOPPED	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	67;"	d	line:67	file:
+STOP_CONTROL	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	91;"	d	line:91	file:
+TRACKING_DATA	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	85;"	d	line:85	file:
+TRACKING_DATA_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	103;"	d	line:103	file:
+Ts	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	62;"	d	line:62	file:
+VALVE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	38;"	d	line:38	file:
+WAIT_COMMAND	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	95;"	d	line:95	file:
+WAIT_DATA	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	96;"	d	line:96	file:
+WAIT_MANUAL_DATA	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	97;"	d	line:97	file:
+WAIT_TRACKING_DATA	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	98;"	d	line:98	file:
+XV_PAIR_SIZE	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	28;"	d	line:28	file:
+_amax	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	2;"	v	line:2
+_dt1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	6;"	v	line:6
+_dt2	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	7;"	v	line:7
+_nseg	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	1;"	v	line:1
+_vmax	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	3;"	v	line:3
+_vt1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	10;"	v	line:10
+_x0	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	4;"	v	line:4
+_xf	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	5;"	v	line:5
+_xt1	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	8;"	v	line:8
+_xt2	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PATH.H	9;"	v	line:9
+_xx0	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	78;"	v	line:78
+a_max	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PARAMS.H	4;"	v	line:4
+aref	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	18;"	d	line:18	file:
+aux_data	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	33;"	v	line:33
+commState	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	99;"	v	line:99
+controlState	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	92;"	v	line:92
+controller_enabled	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	93;"	v	line:93
+counter	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	778;"	v	line:778
+ctr	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	19;"	d	line:19	file:
+ctr_slave	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	26;"	d	line:26	file:
+data_idx	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	42;"	v	line:42
+global_time	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	76;"	v	line:76
+goFlag	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	54;"	v	line:54
+homes	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	131;"	v	line:131
+i	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	72;"	v	line:72
+main	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	781;"	f	line:781
+manual_ctr	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	116;"	v	line:116
+num_active_tracks	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	74;"	v	line:74
+path_data	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	21;"	v	line:21
+path_stage	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	69;"	v	line:69
+received_data	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	30;"	v	line:30
+rxData	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	114;"	v	line:114
+slave_data_idx	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	44;"	v	line:44
+slave_idx	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	43;"	v	line:43
+t	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	71;"	v	line:71
+temp	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	779;"	v	line:779
+time	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	70;"	v	line:70
+tracking_ctr	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	118;"	v	line:118
+usart_rdata	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	106;"	v	line:106
+usart_ridx	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	107;"	v	line:107
+usart_sdata	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	110;"	v	line:110
+usart_sidx	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	111;"	v	line:111
+v_max	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PARAMS.H	3;"	v	line:3
+v_slave	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	25;"	d	line:25	file:
+valid_manual_ctr	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	117;"	v	line:117
+valid_path_params	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	73;"	v	line:73
+valid_sdata	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	112;"	v	line:112
+vref	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	17;"	d	line:17	file:
+we_have_new_target	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	119;"	v	line:119
+went_home	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	132;"	v	line:132
+x_max	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PARAMS.H	2;"	v	line:2
+x_min	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\PARAMS.H	1;"	v	line:1
+x_slave	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	24;"	d	line:24	file:
+xref	D:\Users\LaszloSandor\SCARA\Soft\uC (Ver6.96)\Master\MAIN.C	16;"	d	line:16	file:

@@ -1,0 +1,838 @@
+     1: 
+     2: #include <pic18fxx2.h> 
+     3: #include <math.h>
+     4: #include "path.h"
+     5: #include "params.h"
+     6: 
+     7: 
+     8: 
+     9: //-------------------------------------------------------
+    10: // these variables are used for data exchange via SPI
+    11: // communication
+    12: 
+    13: #define NUM_SLAVES              4
+    14: 
+    15: #define PATH_DATA_SIZE  13
+    16: #define xref    0
+    17: #define vref    4
+    18: #define aref    8
+    19: #define ctr             12
+    20: 
+    21: char path_data[NUM_SLAVES][PATH_DATA_SIZE+1];
+    22: 
+    23: #define CONTROL_DATA_SIZE       9
+    24: #define x_slave         0
+    25: #define v_slave         4
+    26: #define ctr_slave       8
+    27: 
+    28: #define XV_PAIR_SIZE    8
+    29: 
+    30: char received_data[NUM_SLAVES][CONTROL_DATA_SIZE+1];
+    31: 
+    32: #define AUX_DATA_SIZE   8
+    33: char aux_data[NUM_SLAVES][AUX_DATA_SIZE];
+    34: 
+    35: #define DIN1                    0x01
+    36: #define DIN2                    0x02
+    37: #define DIN3_TW                 0x04
+    38: #define VALVE                   0x08
+    39: #define MOTOR_BRAKE     0x10
+    40: #define CONTROL_TYPE    0x20
+    41: 
+    42: char data_idx;
+    43: char slave_idx;
+    44: char slave_data_idx;
+    45: 
+    46: #define NONE                            -1
+    47: 
+    48: 
+    49: 
+    50: //--------------------------------------------------------
+    51: //      other
+    52: //
+    53: 
+    54: char    goFlag;
+    55: 
+    56: 
+    57: 
+    58: //--------------------------------------------------------
+    59: // Path Generator
+    60: //
+    61: 
+    62: #define         Ts              0.004
+    63: 
+    64: #define         STAGE1  0
+    65: #define         STAGE2  2
+    66: #define         STAGE3  3
+    67: #define         STOPPED 4
+    68: 
+    69: char    path_stage[NUM_SLAVES];
+    70: double  time[NUM_SLAVES];                               // time
+    71: double  t;
+    72: int     i;
+    73: char    valid_path_params;
+    74: char    num_active_tracks;
+    75: 
+    76: unsigned long global_time;
+    77: 
+    78: double _xx0[4];
+    79: 
+    80: //--------------------------------------------------------
+    81: //      USART
+    82: //
+    83: 
+    84: #define MANUAL_DATA                     0x69
+    85: #define TRACKING_DATA           0x96
+    86: #define NO_CONTROL                      0xD3
+    87: #define CONTROL_MANUAL          0xA5
+    88: #define CONTROL_TRACKING        0x5A
+    89: #define HOME_SEARCH                     0xBC
+    90: #define START_CONTROL           0x3E
+    91: #define STOP_CONTROL            0xE6
+    92: char controlState;
+    93: char controller_enabled;
+    94: 
+    95: #define WAIT_COMMAND            0x0
+    96: #define WAIT_DATA                       0x1
+    97: #define WAIT_MANUAL_DATA        0x2
+    98: #define WAIT_TRACKING_DATA      0x3
+    99: char commState;
+   100: 
+   101: 
+   102: #define MANUAL_DATA_SIZE                4
+   103: #define TRACKING_DATA_SIZE              16
+   104: 
+   105: #define MAX_USART_DATA_SIZE             16
+   106: char usart_rdata[MAX_USART_DATA_SIZE];
+   107: char usart_ridx;
+   108: 
+   109: #define MONITORED_DATA_SIZE             73
+   110: char usart_sdata[MONITORED_DATA_SIZE];
+   111: char usart_sidx;
+   112: char valid_sdata;
+   113: 
+   114: char rxData;
+   115: 
+   116: char manual_ctr[MANUAL_DATA_SIZE];
+   117: char valid_manual_ctr;
+   118: double tracking_ctr[NUM_SLAVES];
+   119: char we_have_new_target;
+   120: 
+   121: 
+   122: 
+   123: //--------------------------------------------------------
+   124: //      HOME SEARCH
+   125: //
+   126: 
+   127: #define PWM_HOME1       -20
+   128: #define PWM_HOME2       -20
+   129: #define PWM_HOME3       -70
+   130: #define PWM_HOME4       -20
+   131: char homes;
+   132: char went_home;
+   133: 
+   134: 
+   135: //--------------------------------------------------------
+   136: //----------------INTERRUPT SERVICE ROUTINE---------------
+   137: //--------------------------------------------------------
+   138: 
+   139: void interrupt low_priority ISR_low(void) {
+   140: 
+   141:         if ((TMR2IE)&&(TMR2IF)) {
+   142:                 TMR2IF = 0;
+   143:                 
+   144:                 LATE2 = !LATE2;
+   145: 
+   146:                 if (controller_enabled==START_CONTROL) {
+   147:                         global_time++;
+   148: 
+   149:                         switch (controlState) {
+   150: 
+   151:                                 case CONTROL_TRACKING:
+   152: 
+   153:                                         if (valid_path_params) {
+   154: 
+   155:                                                 if (!num_active_tracks) {
+   156:                                                         valid_path_params = 0;
+   157:                                                         LATD7 = 0;
+   158:                                                 }
+   159: 
+   160: 
+   161:                                                 //------------------------------------------------------------------------------------------
+   162:                                                 //                                                                              Fill out PATH DATA
+   163:                                                 //------------------------------------------------------------------------------------------
+   164:         
+   165:                         
+   166:                                                 for (i=0; i<NUM_SLAVES; i++) {
+   167: 
+   168:                                                         path_data[i][ctr] = 0b00100000; // TRACKING Control
+   169:         
+   170:                                                         if (_nseg[i]==3) {
+   171:         
+   172:                                                                 //----------------------------------------------------------------------------------
+   173:                                                                 //      Three Segment Path
+   174:                                                                 //----------------------------------------------------------------------------------
+   175: 
+   176:                                                                 t = time[i];
+   177:         
+   178:                                                                 switch (path_stage[i]){
+   179:                                                                         case STAGE1: {
+   180:                                                                                 *((double *)(&path_data[i][aref])) = _amax[i];
+   181:                                                                                 *((double *)(&path_data[i][vref])) = _amax[i]*t;
+   182:                                                                                 *((double *)(&path_data[i][xref])) = _x0[i]+0.5*_amax[i]*t*t;
+   183:                 
+   184:                                                                                 t += Ts;
+   185:                                                                                 if (t>=_dt1[i]) {
+   186:                                                                                         t = 0;
+   187:                                                                                         path_stage[i] = STAGE2;
+   188:                                                                                 }
+   189:                                                                                 break;
+   190:                                                                         }
+   191:                                                                         case STAGE2: {
+   192:                                                                                 *((double *)(&path_data[i][aref])) = 0;
+   193:                                                                                 *((double *)(&path_data[i][vref])) = _vmax[i];
+   194:                                                                                 *((double *)(&path_data[i][xref])) = _xt1[i]+_vmax[i]*t;
+   195:                 
+   196:                                                                                 t += Ts;
+   197:                                                                                 if (t>=_dt2[i]) {
+   198:                                                                                         t = 0;
+   199:                                                                                         path_stage[i] = STAGE3;
+   200:                                                                                 }
+   201:                                                                                 break;
+   202:                                                                         }
+   203:                                                                         case STAGE3: {
+   204:                                                                 
+   205:                                                                                 *((double *)(&path_data[i][aref])) = -_amax[i];
+   206:                                                                                 *((double *)(&path_data[i][vref])) = _vmax[i]-_amax[i]*t;
+   207:                                                                                 *((double *)(&path_data[i][xref])) = _xt2[i]+_vmax[i]*t-0.5*_amax[i]*t*t;
+   208:         
+   209:                                                                                 t += Ts;
+   210:                                                                                 if (t>=_dt1[i]) {
+   211:                                                                                         t = 0;
+   212:                                                                                         path_stage[i] = STOPPED;
+   213:                                                                                         num_active_tracks--;
+   214:                                                                                 }
+   215:                                                                                 break;
+   216:                                                                         }
+   217:                                                                         case STOPPED: {
+   218:                                                                                 *((double *)(&path_data[i][aref])) = 0;
+   219:                                                                                 *((double *)(&path_data[i][vref])) = 0;
+   220:                                                                                 *((double *)(&path_data[i][xref])) = _xf[i];
+   221:                                                                                 break;
+   222:                                                                         }
+   223:                                                                 }
+   224:         
+   225:                                                                 time[i] = t;
+   226: 
+   227:                                                         } else {
+   228:         
+   229:                                                                 //----------------------------------------------------------------------------------
+   230:                                                                 //      Two Segment Path
+   231:                                                                 //----------------------------------------------------------------------------------
+   232: 
+   233:                                                                 t = time[i];
+   234: 
+   235:                                                                 switch (path_stage[i]){
+   236: 
+   237:                                                                         case STAGE1: {
+   238:                                                                                 *((double *)(&path_data[i][aref])) = _amax[i];
+   239:                                                                                 *((double *)(&path_data[i][vref])) = _amax[i]*t;
+   240:                                                                                 *((double *)(&path_data[i][xref])) = _x0[i]+0.5*_amax[i]*t*t;
+   241: 
+   242:                                                                                 t += Ts;
+   243:                                                                                 if (t>=_dt1[i]) {
+   244:                                                                                         t = 0;
+   245:                                                                                         path_stage[i] = STAGE2;
+   246:                                                                                 }
+   247:                                                                                 break;
+   248:                                                                         }
+   249:                                                                         case STAGE2: {
+   250:                                                                                 *((double *)(&path_data[i][aref])) = -_amax[i];
+   251:                                                                                 *((double *)(&path_data[i][vref])) = _vt1[i]-_amax[i]*t;
+   252:                                                                                 *((double *)(&path_data[i][xref])) = _xt1[i]+_vt1[i]*t-0.5*_amax[i]*t*t;
+   253: 
+   254:                                                                                 t += Ts;
+   255:                                                                                 if (t>=_dt1[i]) {
+   256:                                                                                         t = 0;
+   257:                                                                                         path_stage[i] = STOPPED;
+   258:                                                                                         num_active_tracks--;
+   259:                                                                                 }
+   260:                                                                                 break;
+   261:                                                                         }
+   262:                                                                         case STOPPED: {
+   263:                                                                                 *((double *)(&path_data[i][aref])) = 0;
+   264:                                                                                 *((double *)(&path_data[i][vref])) = 0;
+   265:                                                                                 *((double *)(&path_data[i][xref])) = _xf[i];
+   266:                                                                                 break;
+   267:                                                                         }
+   268:                                                                 }
+   269: 
+   270:                                                                 time[i] = t;
+   271:                                                         }
+   272:                                                 }
+   273:                                         } else {
+   274:                                                 path_data[0][ctr] = 0;  // Manual Control
+   275:                                                 path_data[1][ctr] = 0;  // Manual Control
+   276:                                                 path_data[2][ctr] = 0;  // Manual Control
+   277:                                                 path_data[3][ctr] = 0;  // Manual Control
+   278: 
+   279:                                                 path_data[0][0] = 0;
+   280:                                                 path_data[1][0] = 0;
+   281:                                                 path_data[2][0] = 0;
+   282:                                                 path_data[3][0] = 0;
+   283:                                         }
+   284: 
+   285:                                         break;
+   286: 
+   287:                                 case CONTROL_MANUAL:
+   288:                 
+   289:                                         if (valid_manual_ctr) {
+   290:                                                 path_data[0][0] = manual_ctr[0];
+   291:                                                 path_data[1][0] = manual_ctr[1];
+   292:                                                 path_data[2][0] = manual_ctr[2];
+   293:                                                 path_data[3][0] = manual_ctr[3];
+   294:                                 
+   295:                                                 valid_manual_ctr = 0;
+   296:                                         } else {
+   297:         
+   298:                                                 path_data[0][0] = 0;
+   299:                                                 path_data[1][0] = 0;
+   300:                                                 path_data[2][0] = 0;
+   301:                                                 path_data[3][0] = 0;
+   302:                                         }
+   303: 
+   304:                                         path_data[0][ctr] = 0;  // Manual Control
+   305:                                         path_data[1][ctr] = 0;  // Manual Control
+   306:                                         path_data[2][ctr] = 0;  // Manual Control
+   307:                                         path_data[3][ctr] = 0;  // Manual Control
+   308: 
+   309:                                         break;
+   310:         
+   311:                                 case HOME_SEARCH:
+   312:         
+   313:                                         if (homes==0x0F) {
+   314:                                 
+   315:                                                 _x0[0] = 0;
+   316:                                                 _x0[1] = 0;
+   317:                                                 _x0[2] = 0;
+   318:                                                 _x0[3] = 0;
+   319:                 
+   320:                                                 went_home = 1;
+   321:         
+   322:                                                 controlState = NO_CONTROL;
+   323:         
+   324:                                                 LATD4 = 0;
+   325:                                                 LATD5 = 0;
+   326:                                         }
+   327: 
+   328:                                         if (received_data[0][ctr_slave] & DIN1) {
+   329:                                                 homes = homes | 0x1;
+   330:                                         }
+   331: 
+   332:                                         if (received_data[1][ctr_slave] & DIN1) {
+   333:                                                 homes = homes | 0x2;
+   334:                                         }
+   335: 
+   336:                                         if (received_data[2][ctr_slave] & DIN1) {
+   337:                                                 homes = homes | 0x4;
+   338:                                         }
+   339: 
+   340:                                         if (received_data[3][ctr_slave] & DIN1) {
+   341:                                                 homes = homes | 0x8;
+   342:                                         }
+   343: 
+   344:                                         path_data[0][0] = homes&0x1 ? 0:PWM_HOME1;
+   345:                                         path_data[1][0] = homes&0x2 ? 0:PWM_HOME2;
+   346:                                         path_data[2][0] = homes&0x4 ? 0:PWM_HOME3;
+   347:                                         path_data[3][0] = homes&0x8 ? 0:PWM_HOME4;
+   348: 
+   349: 
+   350:                                         path_data[0][ctr] = 0;  // Manual Control
+   351:                                         path_data[1][ctr] = 0;  // Manual Control
+   352:                                         path_data[2][ctr] = 0;  // Manual Control
+   353:                                         path_data[3][ctr] = 0;  // Manual Control
+   354: 
+   355:                                         break;
+   356:                                 default:
+   357:                                         path_data[0][0] = 0;
+   358:                                         path_data[1][0] = 0;
+   359:                                         path_data[2][0] = 0;
+   360:                                         path_data[3][0] = 0;
+   361: 
+   362: 
+   363:                                         path_data[0][ctr] = 0;  // Manual Control
+   364:                                         path_data[1][ctr] = 0;  // Manual Control
+   365:                                         path_data[2][ctr] = 0;  // Manual Control
+   366:                                         path_data[3][ctr] = 0;  // Manual Control
+   367: 
+   368:                                         break;
+   369:                         }
+   370: 
+   371:         
+   372:                         //------------------------------------------------------------------------------------------
+   373:                         //                                                                              SPI DATA TRANSFER
+   374:                         //------------------------------------------------------------------------------------------
+   375: 
+   376:                         //------------------------------------------------------------------
+   377:                         //--------------------------STEP 1----------------------------------
+   378:                         //------------------------------------------------------------------
+   379: 
+   380:                         for (data_idx=0; data_idx<PATH_DATA_SIZE; data_idx++) {
+   381:                                 for (slave_idx=0; slave_idx<NUM_SLAVES; slave_idx++) {
+   382:                                         //------------------------------------
+   383:                                         // Select Slave
+   384:                                         //
+   385:                                         LATA = 0xFF;
+   386: 
+   387:                                         switch (slave_idx) {
+   388:                                                 case 0: 
+   389:                                                         LATA0 = 0;
+   390:                                                         break;
+   391:                                                 case 1: 
+   392:                                                         LATA1 = 0;
+   393:                                                         break;
+   394:                                                 case 2: 
+   395:                                                         LATA2 = 0;
+   396:                                                         break;
+   397:                                                 case 3: 
+   398:                                                         LATA3 = 0;
+   399:                                                         break;
+   400:                                                 case 4: 
+   401:                                                         LATA4 = 0;
+   402:                                                         break;
+   403:                                                 default: 
+   404:                                                         break;
+   405:                                         }
+   406: 
+   407:                                         //------------------------------------
+   408:                                         // Data Transfer
+   409:                                         //
+   410:                                         SSPBUF = path_data[slave_idx][data_idx];
+   411:         
+   412:                                         while (BF==0);
+   413:                 
+   414:                                         if (data_idx<CONTROL_DATA_SIZE) {
+   415:                                                 received_data[slave_idx][data_idx] = SSPBUF;
+   416:                                         }
+   417:                                 }
+   418:                         }
+   419: 
+   420: 
+   421:                         _xx0[0] = *((double *)(&received_data[0][x_slave]));
+   422:                         _xx0[1] = *((double *)(&received_data[1][x_slave]));
+   423:                         _xx0[2] = *((double *)(&received_data[2][x_slave]));
+   424:                         _xx0[3] = *((double *)(&received_data[3][x_slave]));
+   425: 
+   426: 
+   427:                         //------------------------------------------------------------------
+   428:                         //--------------------------STEP 2----------------------------------
+   429:                         //------------------------------------------------------------------
+   430: 
+   431:                         for (slave_data_idx=0; slave_data_idx<NUM_SLAVES; slave_data_idx++) {
+   432:                                 for (data_idx=0; data_idx<XV_PAIR_SIZE; data_idx++) {
+   433:                                         for (slave_idx=0; slave_idx<NUM_SLAVES; slave_idx++) {
+   434:                                                 //------------------------------------
+   435:                                                 // Select Slave
+   436:                                                 //
+   437:                                                 LATA = 0xFF;
+   438:                                                 switch (slave_idx) {
+   439:                                                         case 0: 
+   440:                                                                 LATA0 = 0;
+   441:                                                                 break;
+   442:                                                         case 1: 
+   443:                                                                 LATA1 = 0;
+   444:                                                                 break;
+   445:                                                         case 2: 
+   446:                                                                 LATA2 = 0;
+   447:                                                                 break;
+   448:                                                         case 3: 
+   449:                                                                 LATA3 = 0;
+   450:                                                                 break;
+   451:                                                         case 4: 
+   452:                                                                 LATA4 = 0;
+   453:                                                                 break;
+   454:                                                         default: 
+   455:                                                                 break;
+   456:                                                 }
+   457: 
+   458:                                                 //------------------------------------
+   459:                                                 // Data Transfer
+   460:                                                 //
+   461:                                                 SSPBUF = received_data[slave_data_idx][data_idx];
+   462:                                                 while (BF==0);
+   463:                                                 
+   464:                                                 if (slave_data_idx==0) {
+   465:                                                         aux_data[slave_idx][data_idx] = SSPBUF;
+   466:                                                 }
+   467:                                         }
+   468:                                 }
+   469:                         }
+   470: 
+   471:                         //------------------------------------
+   472:                         // Disable all Slaves
+   473:                         //
+   474:                         LATA = 0xFF;
+   475: 
+   476:                         //------------------------------------------------------------------------------------
+   477:                         //                                              LOAD MONITORED DATA for USART TRANSMIT
+   478:                         //------------------------------------------------------------------------------------
+   479: 
+   480:                         if (!valid_sdata) {
+   481:                                 usart_sidx = 0;
+   482:         
+   483:                                 for (slave_data_idx=0; slave_data_idx<NUM_SLAVES; slave_data_idx++) {
+   484:                                         for (data_idx=0; data_idx<CONTROL_DATA_SIZE; data_idx++) {
+   485:                                                 usart_sdata[usart_sidx] = received_data[slave_data_idx][data_idx];
+   486:                                                 usart_sidx++;
+   487:                                         }
+   488:                                 }
+   489: 
+   490:                                 for (slave_data_idx=0; slave_data_idx<NUM_SLAVES; slave_data_idx++) {
+   491:                                         for (data_idx=0; data_idx<AUX_DATA_SIZE; data_idx++) {
+   492:                                                 usart_sdata[usart_sidx] = aux_data[slave_data_idx][data_idx];
+   493:                                                 usart_sidx++;
+   494:                                         }                                       
+   495:                                 }
+   496: 
+   497:                                 *((unsigned long *)(&usart_sdata[usart_sidx])) = global_time;
+   498:                                 usart_sidx = usart_sidx + 4;
+   499: 
+   500:                                 usart_sdata[MONITORED_DATA_SIZE-1] = 0xA5;
+   501:                                 usart_sidx = 0;
+   502:                                 valid_sdata = 1;
+   503:                         }
+   504:                 }
+   505:         }
+   506: }
+   507: 
+   508: void interrupt ISR() {
+   509:         
+   510:         //**********************************************************************
+   511:         //**********************************************************************
+   512:         //                                                      USART DATA TRANSFER
+   513:         //**********************************************************************
+   514:         //**********************************************************************
+   515:         
+   516:         if ((RCIE)&&(RCIF)) {
+   517:                 RCIF = 0;
+   518:                 
+   519:                 rxData = RCREG;
+   520: 
+   521:                 if (commState == WAIT_COMMAND) {
+   522:                         
+   523:                         switch(rxData) {
+   524:                                 case NO_CONTROL:
+   525:                                         if (controller_enabled!=START_CONTROL) break;
+   526: 
+   527:                                         commState = WAIT_COMMAND;
+   528:                                         controlState = NO_CONTROL;
+   529:                                         
+   530:                                         LATD4 = 0;
+   531:                                         LATD5 = 0;
+   532:                                         break;
+   533:                                 case START_CONTROL:
+   534:                                         global_time = 0;
+   535:                                         controller_enabled = START_CONTROL;
+   536:                                         break;  
+   537:                                 case STOP_CONTROL:
+   538:                                         controller_enabled = 0;
+   539: 
+   540:                                         LATD4 = 0;
+   541:                                         LATD5 = 0;
+   542:                                         break;  
+   543:                                 case HOME_SEARCH:
+   544:                                         if (controller_enabled!=START_CONTROL) break;
+   545: 
+   546:                                         commState = WAIT_COMMAND;
+   547:                                         controlState = HOME_SEARCH;
+   548: 
+   549:                                         homes = 0;
+   550: 
+   551:                                         LATD4 = 1;
+   552:                                         LATD5 = 1;
+   553:                                         break;
+   554:                                 case CONTROL_MANUAL:
+   555:                                         if (controller_enabled!=START_CONTROL) break;
+   556: 
+   557:                                         commState = WAIT_COMMAND;
+   558:                                         controlState = CONTROL_MANUAL;
+   559: 
+   560:                                         LATD4 = 1;
+   561:                                         LATD5 = 0;
+   562:                                         break;
+   563:                                 case CONTROL_TRACKING:
+   564:                                         if (controller_enabled!=START_CONTROL) break;
+   565: 
+   566:                                         valid_path_params = 0;
+   567:                                         commState = WAIT_COMMAND;
+   568:                                         controlState = CONTROL_TRACKING;
+   569: 
+   570:                                         LATD4 = 0;
+   571:                                         LATD5 = 1;
+   572:                                         break;
+   573:                                 case MANUAL_DATA:
+   574:                                         commState = WAIT_MANUAL_DATA;
+   575:                                         usart_ridx = 0;
+   576:                                         break;
+   577:                                 case TRACKING_DATA:
+   578:                                         commState = WAIT_TRACKING_DATA;
+   579:                                         usart_ridx = 0;
+   580:                                         break;
+   581:                                 default:
+   582:                                         commState = WAIT_COMMAND;                                       
+   583:                                         break;
+   584:                         }
+   585: 
+   586:                 } else {
+   587:                 // WAIT_DATA
+   588:                         usart_rdata[usart_ridx] = rxData;
+   589:                         usart_ridx++;
+   590: 
+   591:                         switch(commState) {
+   592:                                 case WAIT_MANUAL_DATA:
+   593:                                         if (usart_ridx == MANUAL_DATA_SIZE) {
+   594: 
+   595:                                                 manual_ctr[0] = usart_rdata[0];
+   596:                                                 manual_ctr[1] = usart_rdata[1];
+   597:                                                 manual_ctr[2] = usart_rdata[2];
+   598:                                                 manual_ctr[3] = usart_rdata[3];
+   599:         
+   600:                                                 valid_manual_ctr = 1;
+   601: 
+   602:                                                 commState = WAIT_COMMAND;
+   603:                                         }
+   604:                                         break;
+   605:                                 case WAIT_TRACKING_DATA:
+   606:                                         if (usart_ridx == TRACKING_DATA_SIZE) {
+   607:                                                 if (!we_have_new_target) {
+   608:                                                         tracking_ctr[0] = *((double *)(&usart_rdata[0]));
+   609:                                                         tracking_ctr[1] = *((double *)(&usart_rdata[4]));
+   610:                                                         tracking_ctr[2] = *((double *)(&usart_rdata[8]));
+   611:                                                         tracking_ctr[3] = *((double *)(&usart_rdata[12]));
+   612:                                                 }
+   613: 
+   614:                                                 we_have_new_target = 1;
+   615: 
+   616:                                                 commState = WAIT_COMMAND;
+   617:                                         }
+   618:                                         break;
+   619:                                 default:
+   620:                                         break;
+   621:                         }
+   622:                 }
+   623:         }
+   624: }
+   625: 
+   626: //--------------------------------------------------------
+   627: //------------------------FUNCTIONS-----------------------
+   628: //--------------------------------------------------------
+   629: 
+   630: void HardwareInit() {
+   631: 
+   632: //--------------- Control ----------------------------
+   633: 
+   634:         controller_enabled = 1;
+   635:         valid_sdata = 0;
+   636:         valid_manual_ctr = 0;
+   637:         we_have_new_target = 0;
+   638:         went_home =  0;
+   639:         valid_path_params = 0;
+   640: 
+   641: //--------------------- INTERRUPTS ----------------------------
+   642: 
+   643:         PEIE = 1;                       // peripheral interrupt enable
+   644:         GIE = 1;
+   645:         IPEN = 1;
+   646:         
+   647: //--------------------- TIMER2 ----------------------------
+   648: 
+   649:         global_time = 0;
+   650: 
+   651: //      PR2 = 0x7C;                             // 500Hz @ Fosc = 40MHz 
+   652:         PR2 = 0xF9;                             // 250Hz @ Fosc = 40MHz 
+   653:         T2CON = 0x4E;
+   654:         TMR2IP = 0;
+   655:         TMR2IF = 0;
+   656:         TMR2IE = 1;
+   657: 
+   658: //--------------------- LEDs ------------------------------
+   659: 
+   660:         TRISA5 = 0;
+   661:         TRISE2 = 0;
+   662: 
+   663:         LATA5 = 0;
+   664:         LATE2 = 0;
+   665: 
+   666: //--------------------- Digital I/O -----------------------
+   667: 
+   668:         TRISB2 = 1;             // digital input
+   669:         TRISB3 = 1;             // digital input
+   670:         TRISB4 = 1;             // digital input
+   671:         TRISB5 = 1;             // digital input
+   672:         
+   673:         TRISD4 = 0;             // digital output
+   674:         TRISD5 = 0;             // digital output
+   675:         TRISD6 = 0;             // digital output
+   676:         TRISD7 = 0;             // digital output
+   677: 
+   678:         LATD4 = 0;
+   679:         LATD5 = 0;
+   680:         LATD6 = 0;
+   681:         LATD7 = 0;
+   682: 
+   683: //------------------- USART Setup --------------------------
+   684: 
+   685:         usart_sidx = 0;
+   686:         usart_ridx = 0;
+   687: 
+   688:         TRISC6 = 0;             // TX pin output
+   689:         TRISC7 = 1;             // RX pin input
+   690: 
+   691:         TXSTA = 0;
+   692:         CREN = 1;               // continuous receive 
+   693:         BRGH = 1;               // high baud rate
+   694:         TXEN = 1;               // enable transmit
+   695:         SPBRG = 129;    // baud constand for 19200 @ 40MHz
+   696: //      SPBRG = 64;             // baud constand for 9600 @ 40MHz
+   697:         RCIP = 1;               // high priority
+   698:         RCIF = 0;
+   699:         RCIE = 1;
+   700:         SPEN = 1;               // enable module
+   701: 
+   702:         // related
+   703: 
+   704:         controlState = NO_CONTROL;
+   705:         commState = WAIT_COMMAND;       
+   706: 
+   707: //--------------------- SPI Setup --------------------------
+   708: 
+   709:         slave_idx = 0;
+   710:         data_idx = 0;
+   711:         slave_data_idx = 0;
+   712: 
+   713:         TRISC5 = 0; // SDO
+   714:         TRISC3 = 0; // SCK
+   715:         TRISC4 = 1; // SCK
+   716: 
+   717:         TRISA0 = 0;     // SLAVE1
+   718:         TRISA1 = 0;     // SLAVE2
+   719:         TRISA2 = 0;     // SLAVE3
+   720:         TRISA3 = 0;     // SLAVE4
+   721:         TRISA4 = 0;     // SLAVE5
+   722: 
+   723:         LATA0 = 1; // Disable
+   724:         LATA1 = 1; // Disable
+   725:         LATA2 = 1; // Disable
+   726:         LATA3 = 1; // Disable
+   727:         LATA4 = 1; // Disable
+   728:         
+   729:         SSPBUF = 0;
+   730:         SSPSTAT = 0;
+   731:         CKP = 0;                // idle state for clock low level
+   732:         CKE = 1;                // transmit on rising edge of SCK
+   733:         SSPCON1 = 0x01;
+   734: 
+   735:         SSPEN   = 1;
+   736: }
+   737: 
+   738: char CalcPathParams(char idx) {
+   739: 
+   740:         if (_x0[idx] < x_min[idx]) _x0[idx] = x_min[idx];
+   741:         if (_x0[idx] > x_max[idx]) _x0[idx] = x_max[idx];
+   742:         if (_xf[idx] < x_min[idx]) _xf[idx] = x_min[idx];
+   743:         if (_xf[idx] > x_max[idx]) _xf[idx] = x_max[idx];
+   744: 
+   745:         if (_xf[idx]==_x0[idx]) return 0;
+   746: 
+   747:         _amax[idx] = (_xf[idx]<_x0[idx] ? -1:1)*a_max[idx];
+   748:         _vmax[idx] = (_xf[idx]<_x0[idx] ? -1:1)*v_max[idx];
+   749: 
+   750:         if (v_max[idx]*v_max[idx]/a_max[idx] < fabs(_xf[idx]-_x0[idx])) {
+   751:                 // three segment path
+   752: 
+   753:                 _nseg[idx] = 3;
+   754: 
+   755:                 _xt1[idx] = _vmax[idx]*_vmax[idx]/(2*_amax[idx]) + _x0[idx];
+   756:                 _xt2[idx] = _xf[idx] - (_xt1[idx] - _x0[idx]);
+   757: 
+   758:                 _dt1[idx] = _vmax[idx]/_amax[idx];
+   759:                 _dt2[idx] = (_xt2[idx]-_xt1[idx])/_vmax[idx];
+   760:                                 
+   761:                 _vt1[idx] = 0;
+   762:         } else {
+   763:                 // two segment path
+   764: 
+   765:                 _nseg[idx] = 2;
+   766: 
+   767:                 _dt1[idx] = sqrt((_xf[idx]-_x0[idx])/_amax[idx]);
+   768:                 _xt1[idx] = (_x0[idx]+_xf[idx])/2;
+   769:                 _vt1[idx] = _amax[idx]*_dt1[idx];
+   770: 
+   771:                 _xt2[idx] = 0;
+   772:                 _dt2[idx] = 0;
+   773:         }
+   774: 
+   775:         return 1;
+   776: }
+   777: 
+   778: int counter;
+   779: char temp;
+   780: 
+   781: void main() {
+   782:         goFlag = 0;
+   783: 
+   784:         HardwareInit();
+   785: 
+   786:         // give some time for slave startup
+   787:         for (counter=0; counter<20000; counter++);
+   788:         
+   789:         goFlag = 1;
+   790:                 
+   791:         while (1) {
+   792: 
+   793:                 if (controlState==CONTROL_TRACKING && went_home && we_have_new_target && !valid_path_params) {
+   794:                         
+   795:                         _x0[0] = _xx0[0];
+   796:                         _x0[1] = _xx0[1];
+   797:                         _x0[2] = _xx0[2];
+   798:                         _x0[3] = _xx0[3];
+   799:                         
+   800:                         _xf[0] = tracking_ctr[0];
+   801:                         _xf[1] = tracking_ctr[1];
+   802:                         _xf[2] = tracking_ctr[2];
+   803:                         _xf[3] = tracking_ctr[3];
+   804: 
+   805:                         num_active_tracks = 0;
+   806:                         temp = 0;
+   807:                         
+   808:                         for (counter=0; counter<NUM_SLAVES; counter++) {
+   809:                                 time[counter] = 0;
+   810:                                 path_stage[counter] = STOPPED;
+   811: 
+   812:                                 if (CalcPathParams(counter)) {
+   813:                                         temp = 1;                               
+   814:                                         path_stage[counter] = STAGE1;
+   815:                                         num_active_tracks++;
+   816:                                 }
+   817:                         }
+   818: 
+   819:                         if (temp) {
+   820:                                 valid_path_params = 1;
+   821:                                 LATD7 = 1;
+   822:                         }
+   823: 
+   824:                         we_have_new_target = 0;
+   825:                 }
+   826: 
+   827:                 if (valid_sdata) {
+   828:                         while(!TRMT);
+   829:                         TXREG = usart_sdata[usart_sidx];
+   830:                         usart_sidx++;
+   831:                         
+   832:                         if (usart_sidx==MONITORED_DATA_SIZE) {
+   833:                                 valid_sdata = 0;
+   834:                         }
+   835:                 }
+   836:         }
+   837: }
+   838: 

@@ -1,0 +1,1654 @@
+[p GLOBOPT SPACEOPT ]
+"7 D:\XXXX Work\ACTUAL PROJECTS\SCARA ROBOT\PROGS\Slave\dspic30f2010.h
+[v _WREG0 `ui  1 s 2 @0 ]
+"8
+[v _WREG1 `ui  1 s 2 @2 ]
+"9
+[v _WREG2 `ui  1 s 2 @4 ]
+"10
+[v _WREG3 `ui  1 s 2 @6 ]
+"11
+[v _WREG4 `ui  1 s 2 @8 ]
+"12
+[v _WREG5 `ui  1 s 2 @10 ]
+"13
+[v _WREG6 `ui  1 s 2 @12 ]
+"14
+[v _WREG7 `ui  1 s 2 @14 ]
+"15
+[v _WREG8 `ui  1 s 2 @16 ]
+"16
+[v _WREG9 `ui  1 s 2 @18 ]
+"17
+[v _WREG10 `ui  1 s 2 @20 ]
+"18
+[v _WREG11 `ui  1 s 2 @22 ]
+"19
+[v _WREG12 `ui  1 s 2 @24 ]
+"20
+[v _WREG13 `ui  1 s 2 @26 ]
+"21
+[v _WREG14 `ui  1 s 2 @28 ]
+"22
+[v _WREG15 `ui  1 s 2 @30 ]
+"23
+[v _SPLIM `ui  1 s 2 @32 ]
+"24
+[v _ACCAL `ui  1 s 2 @34 ]
+"25
+[v _ACCAH `ui  1 s 2 @36 ]
+"26
+[v _ACCAU `ui  1 s 2 @38 ]
+"27
+[v _AA_SIGNEXT0 `b  1 s 0 @305 ]
+"28
+[v _AA_SIGNEXT1 `b  1 s 0 @306 ]
+"29
+[v _AA_SIGNEXT2 `b  1 s 0 @307 ]
+"30
+[v _AA_SIGNEXT3 `b  1 s 0 @308 ]
+"31
+[v _AA_SIGNEXT4 `b  1 s 0 @309 ]
+"32
+[v _AA_SIGNEXT5 `b  1 s 0 @310 ]
+"33
+[v _AA_SIGNEXT6 `b  1 s 0 @311 ]
+"34
+[v _AA_SIGNEXT7 `b  1 s 0 @312 ]
+"36
+[v _ACCBL `ui  1 s 2 @40 ]
+"37
+[v _ACCBH `ui  1 s 2 @42 ]
+"38
+[v _ACCBU `ui  1 s 2 @44 ]
+"39
+[v _AB_SIGNEXT0 `b  1 s 0 @353 ]
+"40
+[v _AB_SIGNEXT1 `b  1 s 0 @354 ]
+"41
+[v _AB_SIGNEXT2 `b  1 s 0 @355 ]
+"42
+[v _AB_SIGNEXT3 `b  1 s 0 @356 ]
+"43
+[v _AB_SIGNEXT4 `b  1 s 0 @357 ]
+"44
+[v _AB_SIGNEXT5 `b  1 s 0 @358 ]
+"45
+[v _AB_SIGNEXT6 `b  1 s 0 @359 ]
+"46
+[v _AB_SIGNEXT7 `b  1 s 0 @360 ]
+"48
+[v _PCL `ui  1 s 2 @46 ]
+"49
+[v _PCH `ui  1 s 2 @48 ]
+"51
+[v _TBLPAG `ui  1 s 2 @50 ]
+"53
+[v _PSVPAG `ui  1 s 2 @52 ]
+"55
+[v _RCOUNT `ui  1 s 2 @54 ]
+"56
+[v _DCOUNT `ui  1 s 2 @56 ]
+"57
+[v _DOSTARTL `ui  1 s 2 @58 ]
+"58
+[v _DOSTARTH `ui  1 s 2 @60 ]
+"60
+[v _DOENDL `ui  1 s 2 @62 ]
+"61
+[v _DOENDH `ui  1 s 2 @64 ]
+"63
+[v _SR `ui  1 s 2 @66 ]
+"64
+[v _C `b  1 s 0 @528 ]
+"65
+[v _Z `b  1 s 0 @529 ]
+"66
+[v _OV `b  1 s 0 @530 ]
+"67
+[v _N `b  1 s 0 @531 ]
+"68
+[v _RA `b  1 s 0 @532 ]
+"69
+[v _IPL0 `b  1 s 0 @533 ]
+"70
+[v _IPL1 `b  1 s 0 @534 ]
+"71
+[v _IPL2 `b  1 s 0 @535 ]
+"72
+[v _DC `b  1 s 0 @536 ]
+"73
+[v _DA `b  1 s 0 @537 ]
+"74
+[v _SAB `b  1 s 0 @538 ]
+"75
+[v _OAB `b  1 s 0 @539 ]
+"76
+[v _SB `b  1 s 0 @540 ]
+"77
+[v _SA `b  1 s 0 @541 ]
+"78
+[v _OB `b  1 s 0 @542 ]
+"79
+[v _OA `b  1 s 0 @543 ]
+"81
+[v _CORCON `ui  1 s 2 @68 ]
+"82
+[v _IF `b  1 s 0 @544 ]
+"83
+[v _RND `b  1 s 0 @545 ]
+"84
+[v _PSV `b  1 s 0 @546 ]
+"85
+[v _IPL3 `b  1 s 0 @547 ]
+"86
+[v _ACCSAT `b  1 s 0 @548 ]
+"87
+[v _SATDW `b  1 s 0 @549 ]
+"88
+[v _SATB `b  1 s 0 @550 ]
+"89
+[v _SATA `b  1 s 0 @551 ]
+"90
+[v _DL0 `b  1 s 0 @552 ]
+"91
+[v _DL1 `b  1 s 0 @553 ]
+"92
+[v _DL2 `b  1 s 0 @554 ]
+"93
+[v _EDT `b  1 s 0 @555 ]
+"94
+[v _US `b  1 s 0 @556 ]
+"96
+[v _MODCON `ui  1 s 2 @70 ]
+"97
+[v _XWM0 `b  1 s 0 @560 ]
+"98
+[v _XWM1 `b  1 s 0 @561 ]
+"99
+[v _XWM2 `b  1 s 0 @562 ]
+"100
+[v _XWM3 `b  1 s 0 @563 ]
+"101
+[v _YWM0 `b  1 s 0 @564 ]
+"102
+[v _YWM1 `b  1 s 0 @565 ]
+"103
+[v _YWM2 `b  1 s 0 @566 ]
+"104
+[v _YWM3 `b  1 s 0 @567 ]
+"105
+[v _BWM0 `b  1 s 0 @568 ]
+"106
+[v _BWM1 `b  1 s 0 @569 ]
+"107
+[v _BWM2 `b  1 s 0 @570 ]
+"108
+[v _BWM3 `b  1 s 0 @571 ]
+"109
+[v _YMODEN `b  1 s 0 @574 ]
+"110
+[v _XMODEN `b  1 s 0 @575 ]
+"112
+[v _XMODSRT `ui  1 s 2 @72 ]
+"113
+[v _XMODEND `ui  1 s 2 @74 ]
+"114
+[v _YMODSRT `ui  1 s 2 @76 ]
+"115
+[v _YMODEND `ui  1 s 2 @78 ]
+"116
+[v _XBREV `ui  1 s 2 @80 ]
+"117
+[v _XB0 `b  1 s 0 @640 ]
+"118
+[v _XB1 `b  1 s 0 @641 ]
+"119
+[v _XB2 `b  1 s 0 @642 ]
+"120
+[v _XB3 `b  1 s 0 @643 ]
+"121
+[v _XB4 `b  1 s 0 @644 ]
+"122
+[v _XB5 `b  1 s 0 @645 ]
+"123
+[v _XB6 `b  1 s 0 @646 ]
+"124
+[v _XB7 `b  1 s 0 @647 ]
+"125
+[v _XB8 `b  1 s 0 @648 ]
+"126
+[v _XB9 `b  1 s 0 @649 ]
+"127
+[v _XB10 `b  1 s 0 @650 ]
+"128
+[v _XB11 `b  1 s 0 @651 ]
+"129
+[v _XB12 `b  1 s 0 @652 ]
+"130
+[v _XB13 `b  1 s 0 @653 ]
+"131
+[v _XB14 `b  1 s 0 @654 ]
+"132
+[v _BREN `b  1 s 0 @655 ]
+"134
+[v _DISICNT `ui  1 s 2 @82 ]
+"136
+[v _INTCON1 `ui  1 s 2 @128 ]
+"137
+[v _OSCFAIL `b  1 s 0 @1025 ]
+"138
+[v _STKERR `b  1 s 0 @1026 ]
+"139
+[v _ADDRERR `b  1 s 0 @1027 ]
+"140
+[v _MATHERR `b  1 s 0 @1028 ]
+"141
+[v _COVTE `b  1 s 0 @1032 ]
+"142
+[v _OVBTE `b  1 s 0 @1033 ]
+"143
+[v _OVATE `b  1 s 0 @1034 ]
+"144
+[v _NSTDIS `b  1 s 0 @1039 ]
+"146
+[v _INTCON2 `ui  1 s 2 @130 ]
+"147
+[v _INT0EP `b  1 s 0 @1040 ]
+"148
+[v _INT1EP `b  1 s 0 @1041 ]
+"149
+[v _INT2EP `b  1 s 0 @1042 ]
+"150
+[v _ALTIVT `b  1 s 0 @1055 ]
+"152
+[v _IFS0 `ui  1 s 2 @132 ]
+"153
+[v _INT0 `b  1 s 0 @1056 ]
+"154
+[v _IC1IF `b  1 s 0 @1057 ]
+"155
+[v _OC1IF `b  1 s 0 @1058 ]
+"156
+[v _T1IF `b  1 s 0 @1059 ]
+"157
+[v _IC2IF `b  1 s 0 @1060 ]
+"158
+[v _OC2IF `b  1 s 0 @1061 ]
+"159
+[v _T2IF `b  1 s 0 @1062 ]
+"160
+[v _T3IF `b  1 s 0 @1063 ]
+"161
+[v _SPI1IF `b  1 s 0 @1064 ]
+"162
+[v _U1RXIF `b  1 s 0 @1065 ]
+"163
+[v _U1TXIF `b  1 s 0 @1066 ]
+"164
+[v _ADIF `b  1 s 0 @1067 ]
+"165
+[v _NVMIF `b  1 s 0 @1068 ]
+"166
+[v _I2CIF `b  1 s 0 @1069 ]
+"167
+[v _BCLIF `b  1 s 0 @1070 ]
+"168
+[v _CNIF `b  1 s 0 @1071 ]
+"170
+[v _IFS1 `ui  1 s 2 @134 ]
+"171
+[v _INT1IF `b  1 s 0 @1072 ]
+"172
+[v _IC7IF `b  1 s 0 @1073 ]
+"173
+[v _IC8IF `b  1 s 0 @1074 ]
+"174
+[v _INT2IF `b  1 s 0 @1079 ]
+"176
+[v _IFS2 `ui  1 s 2 @136 ]
+"177
+[v _PWMIF `b  1 s 0 @1095 ]
+"178
+[v _QEIIF `b  1 s 0 @1096 ]
+"179
+[v _LVDIF `b  1 s 0 @1098 ]
+"180
+[v _FLTAIF `b  1 s 0 @1099 ]
+"182
+[v _IEC0 `ui  1 s 2 @140 ]
+"183
+[v _INT0IE `b  1 s 0 @1120 ]
+"184
+[v _IC1IE `b  1 s 0 @1121 ]
+"185
+[v _OC1IE `b  1 s 0 @1122 ]
+"186
+[v _T1IE `b  1 s 0 @1123 ]
+"187
+[v _IC2IE `b  1 s 0 @1124 ]
+"188
+[v _OC2IE `b  1 s 0 @1125 ]
+"189
+[v _T2IE `b  1 s 0 @1126 ]
+"190
+[v _T3IE `b  1 s 0 @1127 ]
+"191
+[v _SPI1IE `b  1 s 0 @1128 ]
+"192
+[v _U1RXIE `b  1 s 0 @1129 ]
+"193
+[v _U1TXIE `b  1 s 0 @1130 ]
+"194
+[v _ADIE `b  1 s 0 @1131 ]
+"195
+[v _NVMIE `b  1 s 0 @1132 ]
+"196
+[v _I2CIE `b  1 s 0 @1133 ]
+"197
+[v _BCLIE `b  1 s 0 @1134 ]
+"198
+[v _CNIE `b  1 s 0 @1135 ]
+"200
+[v _IEC1 `ui  1 s 2 @142 ]
+"201
+[v _INT1IE `b  1 s 0 @1136 ]
+"202
+[v _IC7IE `b  1 s 0 @1137 ]
+"203
+[v _IC8IE `b  1 s 0 @1138 ]
+"204
+[v _INT2IE `b  1 s 0 @1143 ]
+"206
+[v _IEC2 `ui  1 s 2 @144 ]
+"207
+[v _PWMIE `b  1 s 0 @1159 ]
+"208
+[v _QEIIE `b  1 s 0 @1160 ]
+"209
+[v _LVDIE `b  1 s 0 @1162 ]
+"210
+[v _FLTAIE `b  1 s 0 @1163 ]
+"212
+[v _IPC0 `ui  1 s 2 @148 ]
+"213
+[v _INT0IP0 `b  1 s 0 @1184 ]
+"214
+[v _INT0IP1 `b  1 s 0 @1185 ]
+"215
+[v _INT0IP2 `b  1 s 0 @1186 ]
+"216
+[v _IC1IP0 `b  1 s 0 @1188 ]
+"217
+[v _IC1IP1 `b  1 s 0 @1189 ]
+"218
+[v _IC1IP2 `b  1 s 0 @1190 ]
+"219
+[v _OC1IP0 `b  1 s 0 @1192 ]
+"220
+[v _OC1IP1 `b  1 s 0 @1193 ]
+"221
+[v _OC1IP2 `b  1 s 0 @1194 ]
+"222
+[v _T1IP0 `b  1 s 0 @1196 ]
+"223
+[v _T1IP1 `b  1 s 0 @1197 ]
+"224
+[v _T1IP2 `b  1 s 0 @1198 ]
+"226
+[v _IPC1 `ui  1 s 2 @150 ]
+"227
+[v _IC2IP0 `b  1 s 0 @1200 ]
+"228
+[v _IC2IP1 `b  1 s 0 @1201 ]
+"229
+[v _IC2IP2 `b  1 s 0 @1202 ]
+"230
+[v _OC2IP0 `b  1 s 0 @1204 ]
+"231
+[v _OC2IP1 `b  1 s 0 @1205 ]
+"232
+[v _OC2IP2 `b  1 s 0 @1206 ]
+"233
+[v _T2IP0 `b  1 s 0 @1208 ]
+"234
+[v _T2IP1 `b  1 s 0 @1209 ]
+"235
+[v _T2IP2 `b  1 s 0 @1210 ]
+"236
+[v _T3IP0 `b  1 s 0 @1212 ]
+"237
+[v _T3IP1 `b  1 s 0 @1213 ]
+"238
+[v _T3IP2 `b  1 s 0 @1214 ]
+"240
+[v _IPC2 `ui  1 s 2 @152 ]
+"241
+[v _SPI1IP0 `b  1 s 0 @1216 ]
+"242
+[v _SPI1IP1 `b  1 s 0 @1217 ]
+"243
+[v _SPI1IP2 `b  1 s 0 @1218 ]
+"244
+[v _U1RXIP0 `b  1 s 0 @1220 ]
+"245
+[v _U1RXIP1 `b  1 s 0 @1221 ]
+"246
+[v _U1RXIP2 `b  1 s 0 @1222 ]
+"247
+[v _U1TXIP0 `b  1 s 0 @1224 ]
+"248
+[v _U1TXIP1 `b  1 s 0 @1225 ]
+"249
+[v _U1TXIP2 `b  1 s 0 @1226 ]
+"250
+[v _ADIP0 `b  1 s 0 @1228 ]
+"251
+[v _ADIP1 `b  1 s 0 @1229 ]
+"252
+[v _ADIP2 `b  1 s 0 @1230 ]
+"254
+[v _IPC3 `ui  1 s 2 @154 ]
+"255
+[v _NVMIP0 `b  1 s 0 @1232 ]
+"256
+[v _NVMIP1 `b  1 s 0 @1233 ]
+"257
+[v _NVMIP2 `b  1 s 0 @1234 ]
+"258
+[v _I2CIP0 `b  1 s 0 @1236 ]
+"259
+[v _I2CIP1 `b  1 s 0 @1237 ]
+"260
+[v _I2CIP2 `b  1 s 0 @1238 ]
+"261
+[v _BCLIP0 `b  1 s 0 @1240 ]
+"262
+[v _BCLIP1 `b  1 s 0 @1241 ]
+"263
+[v _BCLIP2 `b  1 s 0 @1242 ]
+"264
+[v _CNIP0 `b  1 s 0 @1244 ]
+"265
+[v _CNIP1 `b  1 s 0 @1245 ]
+"266
+[v _CNIP2 `b  1 s 0 @1246 ]
+"268
+[v _IPC4 `ui  1 s 2 @156 ]
+"269
+[v _INT1IP0 `b  1 s 0 @1248 ]
+"270
+[v _INT1IP1 `b  1 s 0 @1249 ]
+"271
+[v _INT1IP2 `b  1 s 0 @1250 ]
+"272
+[v _IC7IP0 `b  1 s 0 @1252 ]
+"273
+[v _IC7IP1 `b  1 s 0 @1253 ]
+"274
+[v _IC7IP2 `b  1 s 0 @1254 ]
+"275
+[v _IC8IP0 `b  1 s 0 @1256 ]
+"276
+[v _IC8IP1 `b  1 s 0 @1257 ]
+"277
+[v _IC8IP2 `b  1 s 0 @1258 ]
+"279
+[v _IPC5 `ui  1 s 2 @158 ]
+"280
+[v _INT2IP0 `b  1 s 0 @1276 ]
+"281
+[v _INT2IP1 `b  1 s 0 @1277 ]
+"282
+[v _INT2IP2 `b  1 s 0 @1278 ]
+"284
+[v _IPC9 `ui  1 s 2 @166 ]
+"285
+[v _PWMIP0 `b  1 s 0 @1340 ]
+"286
+[v _PWMIP1 `b  1 s 0 @1341 ]
+"287
+[v _PWMIP2 `b  1 s 0 @1342 ]
+"289
+[v _IPC10 `ui  1 s 2 @168 ]
+"290
+[v _QEIIP0 `b  1 s 0 @1344 ]
+"291
+[v _QEIIP1 `b  1 s 0 @1345 ]
+"292
+[v _QEIIP2 `b  1 s 0 @1346 ]
+"293
+[v _LVDIP0 `b  1 s 0 @1352 ]
+"294
+[v _LVDIP1 `b  1 s 0 @1353 ]
+"295
+[v _LVDIP2 `b  1 s 0 @1354 ]
+"296
+[v _FLTAIP0 `b  1 s 0 @1356 ]
+"297
+[v _FLTAIP1 `b  1 s 0 @1357 ]
+"298
+[v _FLTAIP2 `b  1 s 0 @1358 ]
+"300
+[v _INTREG `ui  1 s 2 @176 ]
+"301
+[v _VECNUM0 `b  1 s 0 @1408 ]
+"302
+[v _VECNUM1 `b  1 s 0 @1409 ]
+"303
+[v _VECNUM2 `b  1 s 0 @1410 ]
+"304
+[v _VECNUM3 `b  1 s 0 @1411 ]
+"305
+[v _VECNUM4 `b  1 s 0 @1412 ]
+"306
+[v _VECNUM5 `b  1 s 0 @1413 ]
+"307
+[v _ILR0 `b  1 s 0 @1416 ]
+"308
+[v _ILR1 `b  1 s 0 @1417 ]
+"309
+[v _ILR2 `b  1 s 0 @1418 ]
+"310
+[v _ILR3 `b  1 s 0 @1419 ]
+"311
+[v _TMODE `b  1 s 0 @1422 ]
+"312
+[v _IRQTOCPU `b  1 s 0 @1423 ]
+"314
+[v _CNEN1 `ui  1 s 2 @192 ]
+"315
+[v _CN0IE `b  1 s 0 @1536 ]
+"316
+[v _CN1IE `b  1 s 0 @1537 ]
+"317
+[v _CN2IE `b  1 s 0 @1538 ]
+"318
+[v _CN3IE `b  1 s 0 @1539 ]
+"319
+[v _CN4IE `b  1 s 0 @1540 ]
+"320
+[v _CN5IE `b  1 s 0 @1541 ]
+"321
+[v _CN6IE `b  1 s 0 @1542 ]
+"322
+[v _CN7IE `b  1 s 0 @1543 ]
+"324
+[v _CNPU1 `ui  1 s 2 @196 ]
+"325
+[v _CN0PUE `b  1 s 0 @1568 ]
+"326
+[v _CN1PUE `b  1 s 0 @1569 ]
+"327
+[v _CN2PUE `b  1 s 0 @1570 ]
+"328
+[v _CN3PUE `b  1 s 0 @1571 ]
+"329
+[v _CN4PUE `b  1 s 0 @1572 ]
+"330
+[v _CN5PUE `b  1 s 0 @1573 ]
+"331
+[v _CN6PUE `b  1 s 0 @1574 ]
+"332
+[v _CN7PUE `b  1 s 0 @1575 ]
+"334
+[v _TMR1 `ui  1 s 2 @256 ]
+"335
+[v _PR1 `ui  1 s 2 @258 ]
+"336
+[v _T1CON `ui  1 s 2 @260 ]
+"337
+[v _T1CS `b  1 s 0 @2081 ]
+"338
+[v _T1SYNC `b  1 s 0 @2082 ]
+"339
+[v _T1CKPS0 `b  1 s 0 @2084 ]
+"340
+[v _T1CKPS1 `b  1 s 0 @2085 ]
+"341
+[v _T1GATE `b  1 s 0 @2086 ]
+"342
+[v _T1SIDL `b  1 s 0 @2093 ]
+"343
+[v _T1ON `b  1 s 0 @2095 ]
+"345
+[v _TMR2 `ui  1 s 2 @262 ]
+"346
+[v _TMR3HLD `ui  1 s 2 @264 ]
+"347
+[v _TMR3 `ui  1 s 2 @266 ]
+"348
+[v _PR2 `ui  1 s 2 @268 ]
+"349
+[v _PR3 `ui  1 s 2 @270 ]
+"350
+[v _T2CON `ui  1 s 2 @272 ]
+"351
+[v _T2CS `b  1 s 0 @2177 ]
+"352
+[v _T232 `b  1 s 0 @2179 ]
+"353
+[v _T2CKPS0 `b  1 s 0 @2180 ]
+"354
+[v _T2CKPS1 `b  1 s 0 @2181 ]
+"355
+[v _T2GATE `b  1 s 0 @2182 ]
+"356
+[v _T2SIDL `b  1 s 0 @2189 ]
+"357
+[v _T2ON `b  1 s 0 @2191 ]
+"359
+[v _T3CON `ui  1 s 2 @274 ]
+"360
+[v _T3CS `b  1 s 0 @2193 ]
+"361
+[v _T3CKPS0 `b  1 s 0 @2196 ]
+"362
+[v _T3CKPS1 `b  1 s 0 @2197 ]
+"363
+[v _T3GATE `b  1 s 0 @2198 ]
+"364
+[v _T3SIDL `b  1 s 0 @2205 ]
+"365
+[v _T3ON `b  1 s 0 @2207 ]
+"367
+[v _QEICON `ui  1 s 2 @290 ]
+"368
+[v _UPDN_CNT `b  1 s 0 @2320 ]
+"369
+[v _TQCS `b  1 s 0 @2321 ]
+"370
+[v _POSRES `b  1 s 0 @2322 ]
+"371
+[v _TQCKPS0 `b  1 s 0 @2323 ]
+"372
+[v _TQCKPS1 `b  1 s 0 @2324 ]
+"373
+[v _TQGATE `b  1 s 0 @2325 ]
+"374
+[v _PCDOUT `b  1 s 0 @2326 ]
+"375
+[v _SWPAB `b  1 s 0 @2327 ]
+"376
+[v _QEIM0 `b  1 s 0 @2328 ]
+"377
+[v _QEIM1 `b  1 s 0 @2329 ]
+"378
+[v _QEIM2 `b  1 s 0 @2330 ]
+"379
+[v _UPDN `b  1 s 0 @2331 ]
+"380
+[v _INDX `b  1 s 0 @2332 ]
+"381
+[v _QEISIDL `b  1 s 0 @2333 ]
+"382
+[v _CNTERR `b  1 s 0 @2335 ]
+"384
+[v _DFLTCON `ui  1 s 2 @292 ]
+"385
+[v _INDCK0 `b  1 s 0 @2336 ]
+"386
+[v _INDCK1 `b  1 s 0 @2337 ]
+"387
+[v _INDCK2 `b  1 s 0 @2338 ]
+"388
+[v _INDOUT `b  1 s 0 @2339 ]
+"389
+[v _QECK0 `b  1 s 0 @2340 ]
+"390
+[v _QECK1 `b  1 s 0 @2341 ]
+"391
+[v _QECK2 `b  1 s 0 @2342 ]
+"392
+[v _QEOUT `b  1 s 0 @2343 ]
+"394
+[v _POSCNT `ui  1 s 2 @294 ]
+"395
+[v _MAXCNT `ui  1 s 2 @296 ]
+"396
+[v _IC1BUF `ui  1 s 2 @320 ]
+"397
+[v _IC1CON `ui  1 s 2 @322 ]
+"398
+[v _IC1_ICM0 `b  1 s 0 @2576 ]
+"399
+[v _IC1_ICM1 `b  1 s 0 @2577 ]
+"400
+[v _IC1_ICM2 `b  1 s 0 @2578 ]
+"401
+[v _IC1_ICBNE `b  1 s 0 @2579 ]
+"402
+[v _IC1_ICOV `b  1 s 0 @2580 ]
+"403
+[v _IC1_ICI0 `b  1 s 0 @2581 ]
+"404
+[v _IC1_ICI1 `b  1 s 0 @2582 ]
+"405
+[v _IC1_ICTMR `b  1 s 0 @2583 ]
+"406
+[v _IC1_ICSIDL `b  1 s 0 @2589 ]
+"408
+[v _IC2BUF `ui  1 s 2 @324 ]
+"409
+[v _IC2CON `ui  1 s 2 @326 ]
+"410
+[v _IC2_ICM0 `b  1 s 0 @2608 ]
+"411
+[v _IC2_ICM1 `b  1 s 0 @2609 ]
+"412
+[v _IC2_ICM2 `b  1 s 0 @2610 ]
+"413
+[v _IC2_ICBNE `b  1 s 0 @2611 ]
+"414
+[v _IC2_ICOV `b  1 s 0 @2612 ]
+"415
+[v _IC2_ICI0 `b  1 s 0 @2613 ]
+"416
+[v _IC2_ICI1 `b  1 s 0 @2614 ]
+"417
+[v _IC2_ICTMR `b  1 s 0 @2615 ]
+"418
+[v _IC2_ICSIDL `b  1 s 0 @2621 ]
+"420
+[v _IC7BUF `ui  1 s 2 @344 ]
+"421
+[v _IC7CON `ui  1 s 2 @346 ]
+"422
+[v _IC7_ICM0 `b  1 s 0 @2768 ]
+"423
+[v _IC7_ICM1 `b  1 s 0 @2769 ]
+"424
+[v _IC7_ICM2 `b  1 s 0 @2770 ]
+"425
+[v _IC7_ICBNE `b  1 s 0 @2771 ]
+"426
+[v _IC7_ICOV `b  1 s 0 @2772 ]
+"427
+[v _IC7_ICI0 `b  1 s 0 @2773 ]
+"428
+[v _IC7_ICI1 `b  1 s 0 @2774 ]
+"429
+[v _IC7_ICTMR `b  1 s 0 @2775 ]
+"430
+[v _IC7_ICSIDL `b  1 s 0 @2781 ]
+"432
+[v _IC8BUF `ui  1 s 2 @348 ]
+"433
+[v _IC8CON `ui  1 s 2 @350 ]
+"434
+[v _IC8_ICM0 `b  1 s 0 @2800 ]
+"435
+[v _IC8_ICM1 `b  1 s 0 @2801 ]
+"436
+[v _IC8_ICM2 `b  1 s 0 @2802 ]
+"437
+[v _IC8_ICBNE `b  1 s 0 @2803 ]
+"438
+[v _IC8_ICOV `b  1 s 0 @2804 ]
+"439
+[v _IC8_ICI0 `b  1 s 0 @2805 ]
+"440
+[v _IC8_ICI1 `b  1 s 0 @2806 ]
+"441
+[v _IC8_ICTMR `b  1 s 0 @2807 ]
+"442
+[v _IC8_ICSIDL `b  1 s 0 @2813 ]
+"444
+[v _OC1RS `ui  1 s 2 @384 ]
+"445
+[v _OC1R `ui  1 s 2 @386 ]
+"446
+[v _OC1CON `ui  1 s 2 @388 ]
+"447
+[v _OC1_OCM0 `b  1 s 0 @3104 ]
+"448
+[v _OC1_OCM1 `b  1 s 0 @3105 ]
+"449
+[v _OC1_OCM2 `b  1 s 0 @3106 ]
+"450
+[v _OC1_OCTSEL `b  1 s 0 @3107 ]
+"451
+[v _OC1_OCFLT `b  1 s 0 @3108 ]
+"452
+[v _OC1_OCSIDL `b  1 s 0 @3117 ]
+"454
+[v _OC2RS `ui  1 s 2 @390 ]
+"455
+[v _OC2R `ui  1 s 2 @392 ]
+"456
+[v _OC2CON `ui  1 s 2 @394 ]
+"457
+[v _OC2_OCM0 `b  1 s 0 @3152 ]
+"458
+[v _OC2_OCM1 `b  1 s 0 @3153 ]
+"459
+[v _OC2_OCM2 `b  1 s 0 @3154 ]
+"460
+[v _OC2_OCTSEL `b  1 s 0 @3155 ]
+"461
+[v _OC2_OCFLT `b  1 s 0 @3156 ]
+"462
+[v _OC2_OCSIDL `b  1 s 0 @3165 ]
+"464
+[v _PTCON `ui  1 s 2 @448 ]
+"465
+[v _PTMOD0 `b  1 s 0 @3584 ]
+"466
+[v _PTMOD1 `b  1 s 0 @3585 ]
+"467
+[v _PTCKPS0 `b  1 s 0 @3586 ]
+"468
+[v _PTCKPS1 `b  1 s 0 @3587 ]
+"469
+[v _PTOPS0 `b  1 s 0 @3588 ]
+"470
+[v _PTOPS1 `b  1 s 0 @3589 ]
+"471
+[v _PTOPS2 `b  1 s 0 @3590 ]
+"472
+[v _PTOPS3 `b  1 s 0 @3591 ]
+"473
+[v _PTSIDL `b  1 s 0 @3597 ]
+"474
+[v _PTEN `b  1 s 0 @3599 ]
+"476
+[v _PTMR `ui  1 s 2 @450 ]
+"477
+[v _PTDIR `b  1 s 0 @3601 ]
+"479
+[v _PTPER `ui  1 s 2 @452 ]
+"481
+[v _SEVTCMP `ui  1 s 2 @454 ]
+"482
+[v _SEVTDIR `b  1 s 0 @3633 ]
+"484
+[v _PWMCON1 `ui  1 s 2 @456 ]
+"485
+[v _PEN1L `b  1 s 0 @3648 ]
+"486
+[v _PEN2L `b  1 s 0 @3649 ]
+"487
+[v _PEN3L `b  1 s 0 @3650 ]
+"488
+[v _PEN4L `b  1 s 0 @3651 ]
+"489
+[v _PEN1H `b  1 s 0 @3652 ]
+"490
+[v _PEN2H `b  1 s 0 @3653 ]
+"491
+[v _PEN3H `b  1 s 0 @3654 ]
+"492
+[v _PEN4H `b  1 s 0 @3655 ]
+"494
+[v _PTMOD2 `b  1 s 0 @3657 ]
+"495
+[v _PTMOD3 `b  1 s 0 @3658 ]
+"496
+[v _PTMOD4 `b  1 s 0 @3659 ]
+"498
+[v _PWMCON2 `ui  1 s 2 @458 ]
+"499
+[v _UDIS `b  1 s 0 @3664 ]
+"500
+[v _OSYNC `b  1 s 0 @3665 ]
+"501
+[v _SEVOPS0 `b  1 s 0 @3672 ]
+"502
+[v _SEVOPS1 `b  1 s 0 @3673 ]
+"503
+[v _SEVOPS2 `b  1 s 0 @3674 ]
+"504
+[v _SEVOPS3 `b  1 s 0 @3675 ]
+"506
+[v _DTCON1 `ui  1 s 2 @460 ]
+"507
+[v _DTAVAL0 `b  1 s 0 @3680 ]
+"508
+[v _DTAVAL1 `b  1 s 0 @3681 ]
+"509
+[v _DTAVAL2 `b  1 s 0 @3682 ]
+"510
+[v _DTAVAL3 `b  1 s 0 @3683 ]
+"511
+[v _DTAVAL4 `b  1 s 0 @3684 ]
+"512
+[v _DTAVAL5 `b  1 s 0 @3685 ]
+"513
+[v _DTAPS0 `b  1 s 0 @3686 ]
+"514
+[v _DTAPS1 `b  1 s 0 @3687 ]
+"515
+[v _DTBVAL0 `b  1 s 0 @3688 ]
+"516
+[v _DTBVAL1 `b  1 s 0 @3689 ]
+"517
+[v _DTBVAL2 `b  1 s 0 @3690 ]
+"518
+[v _DTBVAL3 `b  1 s 0 @3691 ]
+"519
+[v _DTBVAL4 `b  1 s 0 @3692 ]
+"520
+[v _DTBVAL5 `b  1 s 0 @3693 ]
+"521
+[v _DTBPS0 `b  1 s 0 @3694 ]
+"522
+[v _DTBPS1 `b  1 s 0 @3695 ]
+"524
+[v _FLTACON `ui  1 s 2 @464 ]
+"525
+[v _FAEN1 `b  1 s 0 @3712 ]
+"526
+[v _FAEN2 `b  1 s 0 @3713 ]
+"527
+[v _FAEN3 `b  1 s 0 @3714 ]
+"528
+[v _FAEN4 `b  1 s 0 @3715 ]
+"529
+[v _FLTAM `b  1 s 0 @3719 ]
+"530
+[v _FAOV1L `b  1 s 0 @3720 ]
+"531
+[v _FAOV1H `b  1 s 0 @3721 ]
+"532
+[v _FAOV2L `b  1 s 0 @3722 ]
+"533
+[v _FAOV2H `b  1 s 0 @3723 ]
+"534
+[v _FAOV3L `b  1 s 0 @3724 ]
+"535
+[v _FAOV3H `b  1 s 0 @3725 ]
+"536
+[v _FAOV4L `b  1 s 0 @3726 ]
+"537
+[v _FAOV4H `b  1 s 0 @3727 ]
+"539
+[v _OVDCON `ui  1 s 2 @468 ]
+"540
+[v _POUT1L `b  1 s 0 @3744 ]
+"541
+[v _POUT1H `b  1 s 0 @3745 ]
+"542
+[v _POUT2L `b  1 s 0 @3746 ]
+"543
+[v _POUT2H `b  1 s 0 @3747 ]
+"544
+[v _POUT3L `b  1 s 0 @3748 ]
+"545
+[v _POUT3H `b  1 s 0 @3749 ]
+"546
+[v _POUT4L `b  1 s 0 @3750 ]
+"547
+[v _POUT4H `b  1 s 0 @3751 ]
+"548
+[v _POVD1L `b  1 s 0 @3752 ]
+"549
+[v _POVD1H `b  1 s 0 @3753 ]
+"550
+[v _POVD2L `b  1 s 0 @3754 ]
+"551
+[v _POVD2H `b  1 s 0 @3755 ]
+"552
+[v _POVD3L `b  1 s 0 @3756 ]
+"553
+[v _POVD3H `b  1 s 0 @3757 ]
+"554
+[v _POVD4L `b  1 s 0 @3758 ]
+"555
+[v _POVD4H `b  1 s 0 @3759 ]
+"557
+[v _PDC1 `ui  1 s 2 @470 ]
+"558
+[v _PDC2 `ui  1 s 2 @472 ]
+"559
+[v _PDC3 `ui  1 s 2 @474 ]
+"560
+[v _I2CRCV `ui  1 s 2 @512 ]
+"562
+[v _I2CTRN `ui  1 s 2 @514 ]
+"564
+[v _I2CBRG `ui  1 s 2 @516 ]
+"566
+[v _I2CCON `ui  1 s 2 @518 ]
+"567
+[v _SEN `b  1 s 0 @4144 ]
+"568
+[v _RSEN `b  1 s 0 @4145 ]
+"569
+[v _PEN `b  1 s 0 @4146 ]
+"570
+[v _RCEN `b  1 s 0 @4147 ]
+"571
+[v _ACKEN `b  1 s 0 @4148 ]
+"572
+[v _ACKDT `b  1 s 0 @4149 ]
+"573
+[v _STREN `b  1 s 0 @4150 ]
+"574
+[v _GCEN `b  1 s 0 @4151 ]
+"575
+[v _SMEN `b  1 s 0 @4152 ]
+"576
+[v _DISSLW `b  1 s 0 @4153 ]
+"577
+[v _A10M `b  1 s 0 @4154 ]
+"578
+[v _IPMIEN `b  1 s 0 @4155 ]
+"579
+[v _SCLREL `b  1 s 0 @4156 ]
+"580
+[v _I2CSIDL `b  1 s 0 @4157 ]
+"581
+[v _I2CEN `b  1 s 0 @4159 ]
+"583
+[v _I2CSTAT `ui  1 s 2 @520 ]
+"584
+[v _I2CADD `ui  1 s 2 @522 ]
+"586
+[v _U1MODE `ui  1 s 2 @524 ]
+"587
+[v _U1_STSEL `b  1 s 0 @4192 ]
+"588
+[v _U1_PDSEL0 `b  1 s 0 @4193 ]
+"589
+[v _U1_PDSEL1 `b  1 s 0 @4194 ]
+"590
+[v _U1_ABAUD `b  1 s 0 @4197 ]
+"591
+[v _U1_LPBACK `b  1 s 0 @4198 ]
+"592
+[v _U1_WAKE `b  1 s 0 @4199 ]
+"593
+[v _U1_ALTIO `b  1 s 0 @4202 ]
+"594
+[v _U1_USIDL `b  1 s 0 @4205 ]
+"595
+[v _U1_UARTEN `b  1 s 0 @4207 ]
+"597
+[v _U1STA `ui  1 s 2 @526 ]
+"598
+[v _U1_URXDA `b  1 s 0 @4208 ]
+"599
+[v _U1_OERR `b  1 s 0 @4209 ]
+"600
+[v _U1_FERR `b  1 s 0 @4210 ]
+"601
+[v _U1_PERR `b  1 s 0 @4211 ]
+"602
+[v _U1_RIDLE `b  1 s 0 @4212 ]
+"603
+[v _U1_ADDEN `b  1 s 0 @4213 ]
+"604
+[v _U1_URXISEL0 `b  1 s 0 @4214 ]
+"605
+[v _U1_URXISEL1 `b  1 s 0 @4215 ]
+"606
+[v _U1_TRMT `b  1 s 0 @4216 ]
+"607
+[v _U1_UTXBF `b  1 s 0 @4217 ]
+"608
+[v _U1_UTXEN `b  1 s 0 @4218 ]
+"609
+[v _U1_UTXBRK `b  1 s 0 @4219 ]
+"610
+[v _U1_UTXISEL `b  1 s 0 @4223 ]
+"612
+[v _U1TXREG `ui  1 s 2 @528 ]
+"613
+[v _U1_TX0 `b  1 s 0 @4224 ]
+"614
+[v _U1_TX1 `b  1 s 0 @4225 ]
+"615
+[v _U1_TX2 `b  1 s 0 @4226 ]
+"616
+[v _U1_TX3 `b  1 s 0 @4227 ]
+"617
+[v _U1_TX4 `b  1 s 0 @4228 ]
+"618
+[v _U1_TX5 `b  1 s 0 @4229 ]
+"619
+[v _U1_TX6 `b  1 s 0 @4230 ]
+"620
+[v _U1_TX7 `b  1 s 0 @4231 ]
+"621
+[v _U1_TX8 `b  1 s 0 @4232 ]
+"623
+[v _U1RXREG `ui  1 s 2 @530 ]
+"624
+[v _U1_RX0 `b  1 s 0 @4240 ]
+"625
+[v _U1_RX1 `b  1 s 0 @4241 ]
+"626
+[v _U1_RX2 `b  1 s 0 @4242 ]
+"627
+[v _U1_RX3 `b  1 s 0 @4243 ]
+"628
+[v _U1_RX4 `b  1 s 0 @4244 ]
+"629
+[v _U1_RX5 `b  1 s 0 @4245 ]
+"630
+[v _U1_RX6 `b  1 s 0 @4246 ]
+"631
+[v _U1_RX7 `b  1 s 0 @4247 ]
+"632
+[v _U1_RX8 `b  1 s 0 @4248 ]
+"634
+[v _U1BRG `ui  1 s 2 @532 ]
+"635
+[v _SPI1STAT `ui  1 s 2 @544 ]
+"636
+[v _S1_SPIRBF `b  1 s 0 @4352 ]
+"637
+[v _S1_SPITBF `b  1 s 0 @4353 ]
+"638
+[v _S1_SPIROV `b  1 s 0 @4358 ]
+"639
+[v _S1_SPISIDL `b  1 s 0 @4365 ]
+"640
+[v _S1_SPIEN `b  1 s 0 @4367 ]
+"642
+[v _SPI1CON `ui  1 s 2 @546 ]
+"643
+[v _S1_PPRE0 `b  1 s 0 @4368 ]
+"644
+[v _S1_PPRE1 `b  1 s 0 @4369 ]
+"645
+[v _S1_SPRE0 `b  1 s 0 @4370 ]
+"646
+[v _S1_SPRE1 `b  1 s 0 @4371 ]
+"647
+[v _S1_SPRE2 `b  1 s 0 @4372 ]
+"648
+[v _S1_MSTEN `b  1 s 0 @4373 ]
+"649
+[v _S1_CKP `b  1 s 0 @4374 ]
+"650
+[v _S1_SSEN `b  1 s 0 @4375 ]
+"651
+[v _S1_CKE `b  1 s 0 @4376 ]
+"652
+[v _S1_SMP `b  1 s 0 @4377 ]
+"653
+[v _S1_MODE16 `b  1 s 0 @4378 ]
+"654
+[v _S1_DISSDO `b  1 s 0 @4379 ]
+"655
+[v _S1_SPIFSD `b  1 s 0 @4381 ]
+"656
+[v _S1_FRMEN `b  1 s 0 @4382 ]
+"658
+[v _SPI1BUF `ui  1 s 2 @548 ]
+"659
+[v _ADCBUF0 `ui  1 s 2 @640 ]
+"661
+[v _ADCBUF1 `ui  1 s 2 @642 ]
+"663
+[v _ADCBUF2 `ui  1 s 2 @644 ]
+"665
+[v _ADCBUF3 `ui  1 s 2 @646 ]
+"667
+[v _ADCBUF4 `ui  1 s 2 @648 ]
+"669
+[v _ADCBUF5 `ui  1 s 2 @650 ]
+"671
+[v _ADCBUF6 `ui  1 s 2 @652 ]
+"673
+[v _ADCBUF7 `ui  1 s 2 @654 ]
+"675
+[v _ADCBUF8 `ui  1 s 2 @656 ]
+"677
+[v _ADCBUF9 `ui  1 s 2 @658 ]
+"679
+[v _ADCBUFA `ui  1 s 2 @660 ]
+"681
+[v _ADCBUFB `ui  1 s 2 @662 ]
+"683
+[v _ADCBUFC `ui  1 s 2 @664 ]
+"685
+[v _ADCBUFD `ui  1 s 2 @666 ]
+"687
+[v _ADCBUFE `ui  1 s 2 @668 ]
+"689
+[v _ADCBUFF `ui  1 s 2 @670 ]
+"691
+[v _ADCON1 `ui  1 s 2 @672 ]
+"692
+[v _CONV `b  1 s 0 @5376 ]
+"693
+[v _SAMP `b  1 s 0 @5377 ]
+"694
+[v _ASAM `b  1 s 0 @5378 ]
+"695
+[v _SIMSAM `b  1 s 0 @5379 ]
+"696
+[v _SSRC0 `b  1 s 0 @5381 ]
+"697
+[v _SSRC1 `b  1 s 0 @5382 ]
+"698
+[v _SSRC2 `b  1 s 0 @5383 ]
+"699
+[v _FORM0 `b  1 s 0 @5384 ]
+"700
+[v _FORM1 `b  1 s 0 @5385 ]
+"701
+[v _ADSIDL `b  1 s 0 @5389 ]
+"702
+[v _ADON `b  1 s 0 @5391 ]
+"704
+[v _ADCON2 `ui  1 s 2 @674 ]
+"705
+[v _ALTS `b  1 s 0 @5392 ]
+"706
+[v _BUFM `b  1 s 0 @5393 ]
+"707
+[v _SMPI0 `b  1 s 0 @5394 ]
+"708
+[v _SMPI1 `b  1 s 0 @5395 ]
+"709
+[v _SMPI2 `b  1 s 0 @5396 ]
+"710
+[v _SMPI3 `b  1 s 0 @5397 ]
+"711
+[v _BUFS `b  1 s 0 @5399 ]
+"712
+[v _CHPS0 `b  1 s 0 @5400 ]
+"713
+[v _CHPS1 `b  1 s 0 @5401 ]
+"714
+[v _CSCNA `b  1 s 0 @5402 ]
+"715
+[v _OFFCAL `b  1 s 0 @5404 ]
+"716
+[v _VCFG0 `b  1 s 0 @5405 ]
+"717
+[v _VCFG1 `b  1 s 0 @5406 ]
+"718
+[v _VCFG2 `b  1 s 0 @5407 ]
+"720
+[v _ADCON3 `ui  1 s 2 @676 ]
+"721
+[v _ADCS0 `b  1 s 0 @5408 ]
+"722
+[v _ADCS1 `b  1 s 0 @5409 ]
+"723
+[v _ADCS2 `b  1 s 0 @5410 ]
+"724
+[v _ADCS3 `b  1 s 0 @5411 ]
+"725
+[v _ADCS4 `b  1 s 0 @5412 ]
+"726
+[v _ADCS5 `b  1 s 0 @5413 ]
+"727
+[v _ADRC `b  1 s 0 @5415 ]
+"728
+[v _SAMC0 `b  1 s 0 @5416 ]
+"729
+[v _SAMC1 `b  1 s 0 @5417 ]
+"730
+[v _SAMC2 `b  1 s 0 @5418 ]
+"731
+[v _SAMC3 `b  1 s 0 @5419 ]
+"732
+[v _SAMC4 `b  1 s 0 @5420 ]
+"734
+[v _ADCHS `ui  1 s 2 @678 ]
+"735
+[v _CH0SA0 `b  1 s 0 @5424 ]
+"736
+[v _CH0SA1 `b  1 s 0 @5425 ]
+"737
+[v _CH0SA2 `b  1 s 0 @5426 ]
+"738
+[v _CH0SA3 `b  1 s 0 @5427 ]
+"739
+[v _CH0NA `b  1 s 0 @5428 ]
+"740
+[v _CHXSA `b  1 s 0 @5429 ]
+"741
+[v _CHXNA0 `b  1 s 0 @5430 ]
+"742
+[v _CHXNA1 `b  1 s 0 @5431 ]
+"743
+[v _CH0SB0 `b  1 s 0 @5432 ]
+"744
+[v _CH0SB1 `b  1 s 0 @5433 ]
+"745
+[v _CH0SB2 `b  1 s 0 @5434 ]
+"746
+[v _CH0SB3 `b  1 s 0 @5435 ]
+"747
+[v _CH0NB `b  1 s 0 @5436 ]
+"748
+[v _CHXSB `b  1 s 0 @5437 ]
+"749
+[v _CHXNB0 `b  1 s 0 @5438 ]
+"750
+[v _CHXNB1 `b  1 s 0 @5439 ]
+"752
+[v _ADPCFG `ui  1 s 2 @680 ]
+"753
+[v _ADCSSL `ui  1 s 2 @682 ]
+"754
+[v _TRISB `ui  1 s 2 @710 ]
+"755
+[v _TRISB0 `b  1 s 0 @5680 ]
+"756
+[v _TRISB1 `b  1 s 0 @5681 ]
+"757
+[v _TRISB2 `b  1 s 0 @5682 ]
+"758
+[v _TRISB3 `b  1 s 0 @5683 ]
+"759
+[v _TRISB4 `b  1 s 0 @5684 ]
+"760
+[v _TRISB5 `b  1 s 0 @5685 ]
+"762
+[v _PORTB `ui  1 s 2 @712 ]
+"763
+[v _RB0 `b  1 s 0 @5696 ]
+"764
+[v _RB1 `b  1 s 0 @5697 ]
+"765
+[v _RB2 `b  1 s 0 @5698 ]
+"766
+[v _RB3 `b  1 s 0 @5699 ]
+"767
+[v _RB4 `b  1 s 0 @5700 ]
+"768
+[v _RB5 `b  1 s 0 @5701 ]
+"770
+[v _LATB `ui  1 s 2 @714 ]
+"771
+[v _LATB0 `b  1 s 0 @5712 ]
+"772
+[v _LATB1 `b  1 s 0 @5713 ]
+"773
+[v _LATB2 `b  1 s 0 @5714 ]
+"774
+[v _LATB3 `b  1 s 0 @5715 ]
+"775
+[v _LATB4 `b  1 s 0 @5716 ]
+"776
+[v _LATB5 `b  1 s 0 @5717 ]
+"778
+[v _TRISC `ui  1 s 2 @716 ]
+"779
+[v _TRISC13 `b  1 s 0 @5741 ]
+"780
+[v _TRISC14 `b  1 s 0 @5742 ]
+"781
+[v _TRISC15 `b  1 s 0 @5743 ]
+"783
+[v _PORTC `ui  1 s 2 @718 ]
+"784
+[v _RC13 `b  1 s 0 @5757 ]
+"785
+[v _RC14 `b  1 s 0 @5758 ]
+"786
+[v _RC15 `b  1 s 0 @5759 ]
+"788
+[v _LATC `ui  1 s 2 @720 ]
+"789
+[v _LATC13 `b  1 s 0 @5773 ]
+"790
+[v _LATC14 `b  1 s 0 @5774 ]
+"791
+[v _LATC15 `b  1 s 0 @5775 ]
+"793
+[v _TRISD `ui  1 s 2 @722 ]
+"794
+[v _TRISD0 `b  1 s 0 @5776 ]
+"795
+[v _TRISD1 `b  1 s 0 @5777 ]
+"797
+[v _PORTD `ui  1 s 2 @724 ]
+"798
+[v _RD0 `b  1 s 0 @5792 ]
+"799
+[v _RD1 `b  1 s 0 @5793 ]
+"801
+[v _LATD `ui  1 s 2 @726 ]
+"802
+[v _LATD0 `b  1 s 0 @5808 ]
+"803
+[v _LATD1 `b  1 s 0 @5809 ]
+"805
+[v _TRISE `ui  1 s 2 @728 ]
+"806
+[v _TRISE0 `b  1 s 0 @5824 ]
+"807
+[v _TRISE1 `b  1 s 0 @5825 ]
+"808
+[v _TRISE2 `b  1 s 0 @5826 ]
+"809
+[v _TRISE3 `b  1 s 0 @5827 ]
+"810
+[v _TRISE4 `b  1 s 0 @5828 ]
+"811
+[v _TRISE5 `b  1 s 0 @5829 ]
+"812
+[v _TRISE8 `b  1 s 0 @5832 ]
+"814
+[v _PORTE `ui  1 s 2 @730 ]
+"815
+[v _RE0 `b  1 s 0 @5840 ]
+"816
+[v _RE1 `b  1 s 0 @5841 ]
+"817
+[v _RE2 `b  1 s 0 @5842 ]
+"818
+[v _RE3 `b  1 s 0 @5843 ]
+"819
+[v _RE4 `b  1 s 0 @5844 ]
+"820
+[v _RE5 `b  1 s 0 @5845 ]
+"821
+[v _RE8 `b  1 s 0 @5848 ]
+"823
+[v _LATE `ui  1 s 2 @732 ]
+"824
+[v _LATE0 `b  1 s 0 @5856 ]
+"825
+[v _LATE1 `b  1 s 0 @5857 ]
+"826
+[v _LATE2 `b  1 s 0 @5858 ]
+"827
+[v _LATE3 `b  1 s 0 @5859 ]
+"828
+[v _LATE4 `b  1 s 0 @5860 ]
+"829
+[v _LATE5 `b  1 s 0 @5861 ]
+"830
+[v _LATE8 `b  1 s 0 @5864 ]
+"832
+[v _TRISF `ui  1 s 2 @734 ]
+"833
+[v _TRISF2 `b  1 s 0 @5874 ]
+"834
+[v _TRISF3 `b  1 s 0 @5875 ]
+"836
+[v _PORTF `ui  1 s 2 @736 ]
+"837
+[v _RF2 `b  1 s 0 @5890 ]
+"838
+[v _RF3 `b  1 s 0 @5891 ]
+"840
+[v _LATF `ui  1 s 2 @738 ]
+"841
+[v _LATF2 `b  1 s 0 @5906 ]
+"842
+[v _LATF3 `b  1 s 0 @5907 ]
+"844
+[v _RCON `ui  1 s 2 @1856 ]
+"845
+[v _POR `b  1 s 0 @14848 ]
+"846
+[v _BOR `b  1 s 0 @14849 ]
+"847
+[v _IDLE `b  1 s 0 @14850 ]
+"848
+[v _SLEEP `b  1 s 0 @14851 ]
+"849
+[v _WDTO `b  1 s 0 @14852 ]
+"850
+[v _SWDTEN `b  1 s 0 @14853 ]
+"851
+[v _SWR `b  1 s 0 @14854 ]
+"852
+[v _EXTR `b  1 s 0 @14855 ]
+"853
+[v _LVDL0 `b  1 s 0 @14856 ]
+"854
+[v _LVDL1 `b  1 s 0 @14857 ]
+"855
+[v _LVDL2 `b  1 s 0 @14858 ]
+"856
+[v _LVDL3 `b  1 s 0 @14859 ]
+"857
+[v _LVDEN `b  1 s 0 @14860 ]
+"858
+[v _BGST `b  1 s 0 @14861 ]
+"859
+[v _IOPUWR `b  1 s 0 @14862 ]
+"860
+[v _TRAPR `b  1 s 0 @14863 ]
+"862
+[v _OSCCON `ui  1 s 2 @1858 ]
+"863
+[v _OSWEN `b  1 s 0 @14864 ]
+"864
+[v _LPOSCEN `b  1 s 0 @14865 ]
+"865
+[v _CF `b  1 s 0 @14867 ]
+"866
+[v _LOCK `b  1 s 0 @14869 ]
+"867
+[v _POST0 `b  1 s 0 @14870 ]
+"868
+[v _POST1 `b  1 s 0 @14871 ]
+"869
+[v _NOSC0 `b  1 s 0 @14872 ]
+"870
+[v _NOSC1 `b  1 s 0 @14873 ]
+"871
+[v _COSC0 `b  1 s 0 @14876 ]
+"872
+[v _COSC1 `b  1 s 0 @14877 ]
+"874
+[v _NVMCON `ui  1 s 2 @1888 ]
+"875
+[v _PROGOP0 `b  1 s 0 @15104 ]
+"876
+[v _PROGOP1 `b  1 s 0 @15105 ]
+"877
+[v _PROGOP2 `b  1 s 0 @15106 ]
+"878
+[v _PROGOP3 `b  1 s 0 @15107 ]
+"879
+[v _PROGOP4 `b  1 s 0 @15108 ]
+"880
+[v _PROGOP5 `b  1 s 0 @15109 ]
+"881
+[v _PROGOP6 `b  1 s 0 @15110 ]
+"882
+[v _WRERR `b  1 s 0 @15117 ]
+"883
+[v _WREN `b  1 s 0 @15118 ]
+"884
+[v _WR `b  1 s 0 @15119 ]
+"886
+[v _NVMADR `ui  1 s 2 @1890 ]
+"887
+[v _NVMADRU `ui  1 s 2 @1892 ]
+"888
+[v _NVMADR0 `b  1 s 0 @15136 ]
+"889
+[v _NVMADR1 `b  1 s 0 @15137 ]
+"890
+[v _NVMADR2 `b  1 s 0 @15138 ]
+"891
+[v _NVMADR3 `b  1 s 0 @15139 ]
+"892
+[v _NVMADR4 `b  1 s 0 @15140 ]
+"893
+[v _NVMADR5 `b  1 s 0 @15141 ]
+"894
+[v _NVMADR6 `b  1 s 0 @15142 ]
+"895
+[v _NVMADR7 `b  1 s 0 @15143 ]
+"897
+[v _NVMKEY `ui  1 s 2 @1894 ]
+"898
+[v _KEY0 `b  1 s 0 @15152 ]
+"899
+[v _KEY1 `b  1 s 0 @15153 ]
+"900
+[v _KEY2 `b  1 s 0 @15154 ]
+"901
+[v _KEY3 `b  1 s 0 @15155 ]
+"902
+[v _KEY4 `b  1 s 0 @15156 ]
+"903
+[v _KEY5 `b  1 s 0 @15157 ]
+"904
+[v _KEY6 `b  1 s 0 @15158 ]
+"905
+[v _KEY7 `b  1 s 0 @15159 ]
+"907
+[v _PMD1 `ui  1 s 2 @1904 ]
+"908
+[v _ADCM `b  1 s 0 @15232 ]
+"909
+[v _SPI1MD `b  1 s 0 @15235 ]
+"910
+[v _U1MD `b  1 s 0 @15237 ]
+"911
+[v _I2CMD `b  1 s 0 @15239 ]
+"912
+[v _PWMMD `b  1 s 0 @15241 ]
+"913
+[v _QEIMD `b  1 s 0 @15242 ]
+"914
+[v _T1MD `b  1 s 0 @15243 ]
+"915
+[v _T2MD `b  1 s 0 @15244 ]
+"916
+[v _T3MD `b  1 s 0 @15245 ]
+"918
+[v _PMD2 `ui  1 s 2 @1906 ]
+"919
+[v _OC1MD `b  1 s 0 @15248 ]
+"920
+[v _OC2MD `b  1 s 0 @15249 ]
+"921
+[v _IC1MD `b  1 s 0 @15256 ]
+"922
+[v _IC2MD `b  1 s 0 @15257 ]
+"923
+[v _IC7MD `b  1 s 0 @15262 ]
+"924
+[v _IC8MD `b  1 s 0 @15263 ]
+"39 D:\XXXX Work\ACTUAL PROJECTS\SCARA ROBOT\PROGS\Slave\main.c
+[v _command `d  1 e 4 0 ]
+"40
+[v _w `d  1 e 4 0 ]
+"42
+[v _HardwareConfig `(v  1 e 4 0 ]
+{
+"79
+} 0 0 0 -4
+"81
+[v _StartPWM `(v  1 e 4 0 ]
+{
+"83
+} 0 0 0 -4
+"85
+[v _SendCommand `(v  1 e 4 0 ]
+{
+"97
+} 0 0 0 -4
+"99
+[v _main `(i  1 e 2 0 ]
+{
+"120
+} 0 0 0 -4
+[v _sin `(d  0 e 4 0 ]

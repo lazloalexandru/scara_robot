@@ -1,0 +1,120 @@
+     1: /******************************************************************
+     2: *******************************************************************
+     3: 
+     4: Digital Inputs:
+     5: =====================================
+     6: RD0 <= DIN1 
+     7: RD1 <= DIN2
+     8: RE5 <= DIN3 or TW (jumper select)
+     9: 
+    10: Digital Outputs:
+    11: =====================================
+    12: RE3 => Relay Control
+    13: RE4 => Lamp/Digital Out
+    14: 
+    15: Motor Control:
+    16: =====================================
+    17: RE0 => PWM1L output signal
+    18: RE1 => DIR signal
+    19: RE2 => BREAK signal
+    20: 
+    21: RS232 Altrernate pins:
+    22: =====================================
+    23: RC13 => TX
+    24: RC14 <= RX
+    25: 
+    26: ********************************************************************
+    27: ********************************************************************/
+    28: 
+    29: #include "dspic30f2010.h"
+    30: #include "math.h"
+    31: 
+    32: #define pi                              3.141592653589793238462643383279
+    33: #define _2pi                    6.283185307179586476925286766559
+    34: #define piover180               0.017453292519943295769236907684
+    35: 
+    36: #define PWM_PERIOD              1000
+    37: #define PWM_PERIODx2    2000 
+    38: 
+    39: double command;
+    40: double w;
+    41: 
+    42: void HardwareConfig() {
+    43: 
+    44:         //----------------DIGITAL INPUTS----------------------------
+    45: 
+    46:         TRISD0 = 1;     // DIN1
+    47:         TRISD1 = 1; // DIN2
+    48:         TRISE5 = 1;     // DIN3
+    49: 
+    50:         //---------------DIGITAL OUTPUTS----------------------------
+    51: 
+    52:         TRISE3 = 0;     // Relay control
+    53:         TRISE4 = 0; // Digital out (used for LED) 
+    54: 
+    55:         LATE3 = 0; 
+    56:         LATE4 = 0;
+    57: 
+    58:         //---------------MOTOR CONTROL------------------------------
+    59: 
+    60:         TRISE0 = 0; // PWM1L
+    61:         TRISE1 = 0;     // DIR
+    62:         TRISE2 = 0; // BREAK
+    63: 
+    64:         LATE0 = 0;
+    65:     LATE1 = 0;
+    66:         LATE2 = 0;
+    67: 
+    68:         //----------------PWM SETTINGS------------------------------
+    69: 
+    70:         PTCON = 0;                      // free running mode
+    71:         PDC1 = 0;
+    72:         PTPER = PWM_PERIOD;
+    73:         PWMCON1 = 0x0101;       // enable PWM1L output pin independent mode
+    74:         PWMCON2 = 0;            // default
+    75:         PEN1L = 0b1;
+    76:         PTMOD1 = 0b1;
+    77:         OVDCON = 0;    // enable override + all inactive
+    78:         POVD1L = 1;
+    79: }
+    80: 
+    81: void StartPWM() {
+    82:         PTEN = 0b1;
+    83: }
+    84: 
+    85: void SendCommand() {
+    86:         if (command<0) {
+    87:                 if (command <-1) command =-1;
+    88:                 LATE1 = 1;      // DIR
+    89:                 LATE3 = 1;      //RELAY
+    90:                 PDC1 = -command * PWM_PERIODx2;
+    91:         } else {
+    92:                 if (command > 1) command = 1;
+    93:                 LATE1 = 0;      // DIR
+    94:                 LATE3 = 0;  //RELAY
+    95:                 PDC1 = command * PWM_PERIODx2;
+    96:         }
+    97: }
+    98: 
+    99: int main() {
+   100:         HardwareConfig();
+   101: 
+   102:         //TRISE3 = 0;
+   103:         //LATE3 = 1;
+   104:         
+   105:         StartPWM();
+   106: 
+   107:         w = 0.0;
+   108: 
+   109:         while (1) {
+   110:                 w = w + 0.0001;
+   111: 
+   112:                 command = sin(w);
+   113: 
+   114:                 if (w > _2pi) w = 0.0;
+   115: 
+   116:                 SendCommand();
+   117:         }
+   118: 
+   119:         return 0;
+   120: }

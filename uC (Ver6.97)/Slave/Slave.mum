@@ -1,0 +1,30 @@
+
+Memory Usage Map:
+
+Program space:
+    CODE                 used   2A0h (   672) of  1F00h words ( 16.9%)
+    VECTORS              used     2h (     2) of   100h words (  1.6%)
+    NEARCODE             used    24h (    36) of  1F00h words (  0.9%)
+
+Data space:
+    XDATA                used     Ah (    10) of   200h bytes (  2.0%)
+    YDATA                used     0h (     0) of   100h bytes (  0.0%)
+
+Config bits:
+    CONFIG               used     0h (     0) of    1Dh words (  0.0%)
+
+EEPROM data:
+    EEPROM               used     0h (     0) of   3FFh words (  0.0%)
+
+Mapped data:
+    MCONST               used    24h (    36) of   F00h bytes (  0.9%)
+
+
+Summary:
+    Program space        used   2C6h (   710) of  2000h words ( 17.3%)
+    Data space           used     Ah (    10) of   200h bytes (  2.0%)
+    Config bits          used     0h (     0) of    1Dh bytes (  0.0%)
+    EEPROM data          used     0h (     0) of   3FFh bytes (  0.0%)
+    Mapped data          used    24h (    36) of   F00h bytes (  0.9%)
+
+

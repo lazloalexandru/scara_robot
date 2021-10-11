@@ -1,0 +1,2 @@
+Warning[2103] D:\XXXX Work\ACTUAL\SCARA ROBOT\Soft\uC (Ver6.1)\MasterX\MAIN.C 286 : default startup code expects main function declared as 'void main (void)'
+Warning[2053] D:\XXXX Work\ACTUAL\SCARA ROBOT\Soft\uC (Ver6.1)\MasterX\MAIN.C 288 : return value expected
